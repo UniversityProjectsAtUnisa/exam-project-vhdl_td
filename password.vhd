@@ -1,33 +1,10 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
 -- Create Date:    12:56:39 12/24/2018 
--- Design Name: 
 -- Module Name:    password - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
---
--- Dependencies: 
---
--- Revision: 
--- Revision 0.01 - File Created
--- Additional Comments: 
---
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx primitives in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
+----------------------------------------------------------------------------------
 
 entity password is
 -- Generic (rowN1, rowN2, rowN3, rowN4 : in std_logic_vector; (3 downto 0);
@@ -41,8 +18,10 @@ entity password is
            porta_aperta : out  STD_LOGIC);
 end password;
 
+--------------------------INIZIO DICHIARAZIONE ARCHITECTURE-----------------------
 architecture Behavioral of password is
 
+--INIZIO DICHIARAZIONE COMPONENTI--
 --componente che ricorda 0 se la password inserita è sbagliata, 1 altrimenti.
 component controllore is
     Port ( rst : in  STD_LOGIC;
@@ -57,20 +36,22 @@ component accumulatore_mod3 is
            rst : in  STD_LOGIC;
            count : out  STD_LOGIC_VECTOR (1 downto 0));
 end component;
+--FINE DICHIARAZIONE COMPONENTI--
 
---dichiarazione segnali controllore_inserimento
+
+--dichiarazione segnali controllore
 signal rst_controllore : std_logic;
 signal inserimento_corretto : std_logic;
 signal password_corretta : std_logic;
 
---dichiarazione segnali contatore_tentativi
+--dichiarazione segnali accumulatore_mod3
 signal prossimo_tentativo: std_logic;
 --			*clk*
 signal rst_tentativi: std_logic;
 signal tentativo_corrente: std_logic_vector (1 downto 0);
 
 
--- dichiarazione 10 stati
+-- dichiarazione 10 stati e segnali di stato
 type state is (stato_iniziale, 
 stato_lettura1, stato_attesa_rilascio1, 
 stato_lettura2, stato_attesa_rilascio2, 
@@ -89,11 +70,11 @@ constant	colN1:  std_logic_vector (2 downto 0) :=  "001";
 constant colN2:  std_logic_vector (2 downto 0) :=  "001";
 constant colN3:  std_logic_vector (2 downto 0) :=  "001";
 constant colN4:  std_logic_vector (2 downto 0) :=  "001";
-
 ----------------------------------------------------------------
+----------------------*****************-------------------------
 
 begin
-
+--PORT MAPPING
 	controllore_inserimento: controllore port map(rst_controllore, inserimento_corretto, password_corretta);
 	contatore_tentativi: accumulatore_mod3 port map (prossimo_tentativo, clk, rst_tentativi, tentativo_corrente);
 
@@ -107,35 +88,37 @@ begin
 					end if;
 			end if;
 		end process;
+----------------------*****************-------------------------
 
+--Processo asincrono che valuta i passaggi di stato e le uscite in una struttura automatica di tipo Mealy
 	State_Transition_and_output: process (current_state, row, col, badge)
 			begin
+---------Inizio struttura case-when--------------------------------------------------------------------------------------
 			case current_state is
 				when stato_iniziale =>					if badge="11" then --caso di errore, inserire assert(?).
 																			--In questo caso non era necessario,
 																			--ma credo che aumenti la leggibilità.
 																			next_state		<=	stato_iniziale;
 																			porta_aperta	<='0'; 
-																			rst_controllore<='1'; 
-																			rst_tentativi	<='1';
+																			inserimento_corretto<='0';	rst_controllore<='1'; 
+																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
 																		
 																elsif badge="01" then
 																			next_state		<=stato_lettura1; 
 																			porta_aperta	<='0'; 
-																			rst_controllore<='1'; 
-																			rst_tentativi	<='1';
+																			inserimento_corretto<='0';	rst_controllore<='1'; 
+																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
 																else
 																			next_state		<=stato_iniziale;
-																			porta_aperta	<='0'; 
-																			rst_controllore<='1'; 
-																			rst_tentativi	<='1';
+																			inserimento_corretto<='0';	rst_controllore<='1'; 
+																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
 																end if;
--------------------------------------------------------------------------------------------------------------------------													
+-------------------------------------------------------------------------------------------------------------------------												
 				when stato_lettura1 =>					if badge="11" then --caso di errore, inserire assert
 																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
-																			rst_controllore<='1'; 
-																			rst_tentativi	<='1';
+																			inserimento_corretto<='0';	rst_controllore<='1'; 
+																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
 																		
 																elsif row = "0000" and col = "000" then 
 																			next_state		<=stato_lettura1;
@@ -157,8 +140,8 @@ begin
 				when stato_attesa_rilascio1 =>		if badge="11" then --caso di errore, inserire assert
 																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
-																			rst_controllore<='1'; 
-																			rst_tentativi	<='1';
+																			inserimento_corretto<='0';	rst_controllore<='1'; 
+																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
 																			
 																elsif	row = rowN1  and col = colN1 then
 																			next_state		<=stato_attesa_rilascio1;
@@ -180,8 +163,8 @@ begin
 				when stato_lettura2 =>					if badge="11" then --caso di errore, inserire assert
 																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
-																			rst_controllore<='1'; 
-																			rst_tentativi	<='1';
+																			inserimento_corretto<='0';	rst_controllore<='1'; 
+																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
 																		
 																elsif row = "0000" and col = "000" then 
 																			next_state		<=stato_lettura2;
@@ -190,7 +173,7 @@ begin
 																			prossimo_tentativo  <='0';	rst_tentativi	<='0';
 																elsif row = rowN2  and col = colN2 then
 																			next_state		<=stato_attesa_rilascio2;
-																			porta_aperta	<='0'; 
+																			porta_aperta	<='0';
 																			inserimento_corretto<='1';	rst_controllore<='0'; 
 																			prossimo_tentativo  <='0';	rst_tentativi	<='0';
 																else
@@ -203,8 +186,8 @@ begin
 				when stato_attesa_rilascio2 =>		if badge="11" then --caso di errore, inserire assert
 																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
-																			rst_controllore<='1'; 
-																			rst_tentativi	<='1';
+																			inserimento_corretto<='0';	rst_controllore<='1'; 
+																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
 																			
 																elsif	row = rowN2  and col = colN2 then
 																			next_state		<=stato_attesa_rilascio2;
@@ -226,8 +209,8 @@ begin
 				when stato_lettura3 =>					if badge="11" then --caso di errore, inserire assert
 																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
-																			rst_controllore<='1'; 
-																			rst_tentativi	<='1';
+																			inserimento_corretto<='0';	rst_controllore<='1'; 
+																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
 																		
 																elsif row = "0000" and col = "000" then 
 																			next_state		<=stato_lettura3;
@@ -249,8 +232,8 @@ begin
 				when stato_attesa_rilascio3 =>		if badge="11" then --caso di errore, inserire assert
 																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
-																			rst_controllore<='1'; 
-																			rst_tentativi	<='1';
+																			inserimento_corretto<='0';	rst_controllore<='1'; 
+																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
 																			
 																elsif	row = rowN3  and col = colN3 then
 																			next_state		<=stato_attesa_rilascio3;
@@ -272,8 +255,8 @@ begin
 				when stato_lettura4 =>					if badge="11" then --caso di errore, inserire assert
 																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
-																			rst_controllore<='1'; 
-																			rst_tentativi	<='1';
+																			inserimento_corretto<='0';	rst_controllore<='1'; 
+																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
 																		
 																elsif row = "0000" and col = "000" then 
 																			next_state		<=stato_lettura4;
@@ -295,8 +278,8 @@ begin
 				when stato_attesa_rilascio4 =>		if badge="11" then --caso di errore, inserire assert
 																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
-																			rst_controllore<='1'; 
-																			rst_tentativi	<='1';
+																			inserimento_corretto<='0';	rst_controllore<='1'; 
+																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
 																			
 																elsif	row = rowN4  and col = colN4 then
 																			next_state		<=stato_attesa_rilascio4;
@@ -309,7 +292,7 @@ begin
 																						porta_aperta	<='0'; 
 																						inserimento_corretto<='0';	rst_controllore<='1'; 
 																						prossimo_tentativo  <='1';	rst_tentativi	<='0';
-																		elsif password_corretta = '0' and tentativo_corrente(1)='1' then 
+																		elsif password_corretta = '0' and tentativo_corrente="10" then 
 																						next_state		<=stato_iniziale;
 																						porta_aperta	<='0'; 
 																						inserimento_corretto<='0';	rst_controllore<='1'; 
@@ -319,6 +302,11 @@ begin
 																						porta_aperta	<='1'; 
 																						inserimento_corretto<='0';	rst_controllore<='1'; 
 																						prossimo_tentativo  <='0';	rst_tentativi	<='1';
+																		else
+																						next_state		<=stato_attesa_rilascio4;
+																						porta_aperta	<='0'; 
+																						inserimento_corretto<='0';	rst_controllore<='0'; 
+																						prossimo_tentativo  <='0';	rst_tentativi	<='0';
 																			end if;
 																			
 																else
@@ -331,10 +319,11 @@ begin
 				when stato_porta_aperta =>				if badge="11" then --caso di errore, inserire assert
 																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
-																			rst_controllore<='1'; 
-																			rst_tentativi	<='1';
+																			inserimento_corretto<='0';	rst_controllore<='1'; 
+																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
+																			
 																elsif badge="10" then
-																			next_state		<=stato_lettura1;
+																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
 																			inserimento_corretto<='0';	rst_controllore<='1'; 
 																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
@@ -346,6 +335,7 @@ begin
 																end if;
 -------------------------------------------------------------------------------------------------------------------------
 				end case;
+---------Fine struttura case-when----------------------------------------------------------------------------------------
 	end process;
 
 

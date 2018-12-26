@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    19:46:01 12/23/2018 
+-- Create Date:    21:39:15 12/26/2018 
 -- Design Name: 
--- Module Name:    contatore_mod3 - Behavioral 
+-- Module Name:    counter2_VHDL - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -19,6 +19,8 @@
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -29,15 +31,32 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity contatore_mod3 is
-    Port ( I : in  STD_LOGIC;
-           rst : in  STD_LOGIC;
+entity counter2_VHDL is
+    Port ( En : in  STD_LOGIC;
            clk : in  STD_LOGIC;
-           count : out  STD_LOGIC_vector (1 downto 0));
-end contatore_mod3;
-architecture Behavioral of contatore_mod3 is
-beginsd
+           rst : in  STD_LOGIC;
+           O : out  STD_LOGIC_VECTOR (0 to 1));
+end counter2_VHDL;
 
-
+architecture Behavioral of counter2_VHDL is
+	signal temp: std_logic_vector(0 to 1);
+begin
+	process(clk)
+		begin
+			if rising_edge(clk) then
+				if rst='1' then
+					temp<="00";
+				elsif En='1' then
+					if temp="10" then
+						temp<="00";
+					else
+						temp <= temp + 1;
+					end if;
+				end if;
+			end if;
+	O <= temp;
+	end process;
+	
+--https://en.wikibooks.org/wiki/VHDL_for_FPGA_Design/4-Bit_BCD_Counter_with_Clock_Enable
 end Behavioral;
 

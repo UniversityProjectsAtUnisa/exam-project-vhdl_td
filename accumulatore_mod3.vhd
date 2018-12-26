@@ -46,10 +46,8 @@ end component;
 signal clk_star : std_logic;
 
 begin
+
 	clk_star<=clk and En;
-
-
 	c1: contatore_mod4 port map(clk_star, rst, count);
-
 end Behavioral;
 
