@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "C:/Users/marco/Documents/XilinxProjects/porta/controllore_tb_isim_beh.exe" -prj "C:/Users/marco/Documents/XilinxProjects/porta/controllore_tb_beh.prj" "work.controllore_tb" 

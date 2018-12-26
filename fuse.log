@@ -1,0 +1,18 @@
+Running: D:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib secureip -o C:/Users/marco/Documents/XilinxProjects/porta/controllore_tb_isim_beh.exe -prj C:/Users/marco/Documents/XilinxProjects/porta/controllore_tb_beh.prj work.controllore_tb 
+ISim P.20131013 (signature 0x7708f090)
+Number of CPUs detected in this system: 12
+Turning on mult-threading, number of parallel sub-compilation jobs: 24 
+Determining compilation order of HDL files
+Parsing VHDL file "C:/Users/marco/Documents/XilinxProjects/porta/controllore.vhd" into library work
+Parsing VHDL file "C:/Users/marco/Documents/XilinxProjects/porta/controllore_tb.vhd" into library work
+Starting static elaboration
+Completed static elaboration
+Compiling package standard
+Compiling package std_logic_1164
+Compiling architecture behavioral of entity controllore [controllore_default]
+Compiling architecture behavior of entity controllore_tb
+Time Resolution for simulation is 1ps.
+Compiled 5 VHDL Units
+Built simulation executable C:/Users/marco/Documents/XilinxProjects/porta/controllore_tb_isim_beh.exe
+Fuse Memory Usage: 29552 KB
+Fuse CPU Usage: 358 ms

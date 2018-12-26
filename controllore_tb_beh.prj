@@ -1,0 +1,2 @@
+vhdl work "controllore.vhd"
+vhdl work "controllore_tb.vhd"
