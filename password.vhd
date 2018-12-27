@@ -14,9 +14,9 @@ entity password is
            row : in  STD_LOGIC_VECTOR (3 downto 0);
            col : in  STD_LOGIC_VECTOR (2 downto 0);
            badge : in  STD_LOGIC_VECTOR (1 downto 0);
-					badge_bug : out std_logic;	--ALTO QUANDO badge="11"
-					--contatore_bug : out std_logic; --ALTO QUANDO tentativo_corrente="11"
-					--row_col_bug : out std_logic; --ALTO QUANDO non vi sono intersezioni tra righe e colonne
+					badge_debug : out std_logic;	--ALTO QUANDO badge="11"
+					contatore_debug : out std_logic; --ALTO QUANDO tentativo_corrente="11"
+					tastierino_debug : out std_logic; --ALTO QUANDO non vi sono intersezioni tra righe e colonne
            porta_aperta : out  STD_LOGIC);
 end password;
 
@@ -32,11 +32,11 @@ component controllore is
 end component;
 
 --componente che conta i tentativi di inserimento disponibili.
-component accumulatore_mod3 is
+component counter2_VHDL is
     Port ( En : in  STD_LOGIC;
            clk : in  STD_LOGIC;
            rst : in  STD_LOGIC;
-           count : out  STD_LOGIC_VECTOR (1 downto 0));
+           O : out  STD_LOGIC_VECTOR (1 downto 0));
 end component;
 --FINE DICHIARAZIONE COMPONENTI--
 
@@ -46,14 +46,14 @@ signal rst_controllore : std_logic;
 signal inserimento_corretto : std_logic;
 signal password_corretta : std_logic;
 
---dichiarazione segnali accumulatore_mod3
+--dichiarazione segnali counter2_VHDL
 signal prossimo_tentativo: std_logic;
 --			*clk*
 signal rst_tentativi: std_logic;
 signal tentativo_corrente: std_logic_vector (1 downto 0);
 
 
--- dichiarazione 10 stati e segnali di stato
+--dichiarazione 10 stati e segnali di stato
 type state is (stato_iniziale, 
 stato_lettura1, stato_attesa_rilascio1, 
 stato_lettura2, stato_attesa_rilascio2, 
@@ -62,15 +62,20 @@ stato_lettura4, stato_attesa_rilascio4,
 stato_porta_aperta);
 signal current_state, next_state : state;
 
+--dichiarazione segnali di debug
+signal badge_debug_temp : std_logic;
+signal contatore_debug_temp : std_logic;
+signal tastierino_debug_temp : std_logic;
+
 ----------------------*****************-------------------------
 ----------------------Temporary section-------------------------
-constant rowN1:  std_logic_vector (3 downto 0) := "0001";
-constant rowN2:  std_logic_vector (3 downto 0) := "0001";
-constant rowN3:  std_logic_vector (3 downto 0) := "0001";
-constant rowN4:  std_logic_vector (3 downto 0) := "0001";
-constant	colN1:  std_logic_vector (2 downto 0) :=  "001";
+constant rowN1:  std_logic_vector (3 downto 0) := "1000";
+constant colN1:  std_logic_vector (2 downto 0) :=  "001";
+constant rowN2:  std_logic_vector (3 downto 0) := "1000";
 constant colN2:  std_logic_vector (2 downto 0) :=  "001";
+constant rowN3:  std_logic_vector (3 downto 0) := "1000";
 constant colN3:  std_logic_vector (2 downto 0) :=  "001";
+constant rowN4:  std_logic_vector (3 downto 0) := "1000";
 constant colN4:  std_logic_vector (2 downto 0) :=  "001";
 ----------------------------------------------------------------
 ----------------------*****************-------------------------
@@ -78,15 +83,47 @@ constant colN4:  std_logic_vector (2 downto 0) :=  "001";
 begin
 --PORT MAPPING
 	controllore_inserimento: controllore port map(rst_controllore, inserimento_corretto, password_corretta);
-	contatore_tentativi: accumulatore_mod3 port map (prossimo_tentativo, clk, rst_tentativi, tentativo_corrente);
+	contatore_tentativi:   counter2_VHDL port map(prossimo_tentativo, clk, rst_tentativi, tentativo_corrente);
 
-
+-----------------*************************----------------------
+-----------------Gestione segnali di debug----------------------
+	debug_process: process(badge, tentativo_corrente, row, col)
+		begin
+-----------------uscita badge_debug-----------------------------
+		if badge="11" then	
+				badge_debug_temp<='1';
+		else  badge_debug_temp<='0';
+		end if;
+-----------------uscita contatore_debug-------------------------
+		if tentativo_corrente="11" then	
+				contatore_debug_temp<='1';
+		else  contatore_debug_temp<='0';
+		end if;
+-----------------uscita tastierino_debug------------------------
+		if row="0000" xor col="000" then	
+				tastierino_debug_temp<='1';
+		else  tastierino_debug_temp<='0';
+		end if;
+	end process;
+-----------------Assegnamenti finali fuori dal process----------
+	badge_debug			<=badge_debug_temp;
+	contatore_debug	<=contatore_debug_temp;
+	tastierino_debug	<=tastierino_debug_temp;
+-----------------**************************---------------------
+	
 --Processo sincrono che valuta a tempo di clock il nuovo stato, sulla base del reset e dei processi concorrenti.
+--Se il reset è alto o si verifica un caso non accettabile (debug) ritorna allo stato iniziale con uscita 0RR.
 	Sync_process: process(clk, rst)
 		begin
 			if rising_edge(clk) then
-					if rst='1' then current_state<=stato_iniziale;
-					else				 current_state<=next_state;
+					if rst='1' or badge_debug_temp='1' or contatore_debug_temp='1' or tastierino_debug_temp='1' then 
+							current_state	<=stato_iniziale;
+							--DA TESTARE**********************************************************************************************
+							--porta_aperta	<='0';
+							--inserimento_corretto<='0';	rst_controllore<='1';
+							--prossimo_tentativo  <='0';	rst_tentativi	<='1';
+					else		
+							current_state<=next_state;
 					end if;
 			end if;
 		end process;
@@ -95,18 +132,9 @@ begin
 --Processo asincrono che valuta i passaggi di stato e le uscite in una struttura automatica di tipo Mealy
 	State_Transition_and_output: process (current_state, row, col, badge)
 			begin
-
-			if badge="11" then --caso di errore, inserire assert(?).
-					--In questo caso non era necessario,
-					--ma credo che aumenti la leggibilità.
-					next_state		<=	stato_iniziale;
-					porta_aperta	<='0'; 
-					inserimento_corretto<='0';	rst_controllore<='1'; 
-					prossimo_tentativo  <='0';	rst_tentativi	<='1';
-			else
 ---------Inizio struttura case-when--------------------------------------------------------------------------------------
-					case current_state is
-					when stato_iniziale =>				if badge="01" then
+				case current_state is
+				when stato_iniziale =>					if badge="01" then
 																			next_state		<=stato_lettura1; 
 																			porta_aperta	<='0'; 
 																			inserimento_corretto<='0';	rst_controllore<='1'; 
@@ -284,12 +312,9 @@ begin
 																end if;
 -------------------------------------------------------------------------------------------------------------------------
 				end case;
-				end if;
 ---------Fine struttura case-when----------------------------------------------------------------------------------------
 	end process;
 
-
-		--uscita badge_bug
-		badge_bug<=badge(1) and badge(0);
+		
 end Behavioral;
 
