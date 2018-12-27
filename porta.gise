@@ -229,12 +229,10 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1545857271" xil_pn:in_ck="-987077368792137042" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="8900641264023796280" xil_pn:start_ts="1545857265">
+    <transform xil_pn:end_ts="1545925054" xil_pn:in_ck="-987077368792137042" xil_pn:name="TRANEXT_xstsynthesize_spartan6" xil_pn:prop_ck="8900641264023796280" xil_pn:start_ts="1545925046">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="InputChanged"/>
       <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
       <outfile xil_pn:name="accumulatore_mod3.ngr"/>
       <outfile xil_pn:name="contatore_mod4.ngr"/>

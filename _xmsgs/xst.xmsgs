@@ -5,13 +5,13 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompiler" num="92" delta="new" >"C:\Users\marco\Documents\XilinxProjects\porta\password.vhd" Line 290: <arg fmt="%s" index="1">password_corretta</arg> should be on the sensitivity list of the process
+<msg type="warning" file="HDLCompiler" num="92" delta="new" >"C:\Users\marco\Documents\XilinxProjects\porta\password.vhd" Line 244: <arg fmt="%s" index="1">password_corretta</arg> should be on the sensitivity list of the process
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="92" delta="new" >"C:\Users\marco\Documents\XilinxProjects\porta\password.vhd" Line 295: <arg fmt="%s" index="1">password_corretta</arg> should be on the sensitivity list of the process
+<msg type="warning" file="HDLCompiler" num="92" delta="new" >"C:\Users\marco\Documents\XilinxProjects\porta\password.vhd" Line 249: <arg fmt="%s" index="1">password_corretta</arg> should be on the sensitivity list of the process
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="92" delta="new" >"C:\Users\marco\Documents\XilinxProjects\porta\password.vhd" Line 300: <arg fmt="%s" index="1">password_corretta</arg> should be on the sensitivity list of the process
+<msg type="warning" file="HDLCompiler" num="92" delta="new" >"C:\Users\marco\Documents\XilinxProjects\porta\password.vhd" Line 254: <arg fmt="%s" index="1">password_corretta</arg> should be on the sensitivity list of the process
 </msg>
 
 <msg type="warning" file="Xst" num="737" delta="new" >Found <arg fmt="%d" index="1">1</arg>-bit latch for signal &lt;<arg fmt="%s" index="2">porta_aperta</arg>&gt;. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
