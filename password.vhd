@@ -95,7 +95,7 @@ begin
 --Processo asincrono che valuta i passaggi di stato e le uscite in una struttura automatica di tipo Mealy
 	State_Transition_and_output: process (current_state, row, col, badge)
 			begin
----------Inizio struttura case-when--------------------------------------------------------------------------------------
+
 			if badge="11" then --caso di errore, inserire assert(?).
 					--In questo caso non era necessario,
 					--ma credo che aumenti la leggibilità.
@@ -104,6 +104,7 @@ begin
 					inserimento_corretto<='0';	rst_controllore<='1'; 
 					prossimo_tentativo  <='0';	rst_tentativi	<='1';
 			else
+---------Inizio struttura case-when--------------------------------------------------------------------------------------
 					case current_state is
 					when stato_iniziale =>				if badge="01" then
 																			next_state		<=stato_lettura1; 
