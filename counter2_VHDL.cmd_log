@@ -1,1 +1,4 @@
 xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/counter2_VHDL.xst" -ofn "C:/Users/marco/Documents/XilinxProjects/porta/counter2_VHDL.syr" 
+xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/counter2_VHDL.xst" -ofn "C:/Users/marco/Documents/XilinxProjects/porta/counter2_VHDL.syr" 
+xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/counter2_VHDL.xst" -ofn "C:/Users/marco/Documents/XilinxProjects/porta/counter2_VHDL.syr" 
+xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/counter2_VHDL.xst" -ofn "C:/Users/marco/Documents/XilinxProjects/porta/counter2_VHDL.syr" 

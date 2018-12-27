@@ -1,2 +1,3 @@
 xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/accumulatore_mod3.xst" -ofn "C:/Users/marco/Documents/XilinxProjects/porta/accumulatore_mod3.syr" 
 xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/accumulatore_mod3.xst" -ofn "C:/Users/marco/Documents/XilinxProjects/porta/accumulatore_mod3.syr" 
+xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/accumulatore_mod3.xst" -ofn "C:/Users/marco/Documents/XilinxProjects/porta/accumulatore_mod3.syr" 

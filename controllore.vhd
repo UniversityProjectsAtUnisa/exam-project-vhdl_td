@@ -29,8 +29,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity controllore is
-    Port ( rst : in  STD_LOGIC;
+entity controllore is	-- considera se farlo sincrono
+    Port ( --clk : in std_logic;
+			  rst : in  STD_LOGIC;
            I : in  STD_LOGIC;
            O : out  STD_LOGIC);
 end controllore;

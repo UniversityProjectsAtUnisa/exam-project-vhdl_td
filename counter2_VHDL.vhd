@@ -54,8 +54,8 @@ begin
 					end if;
 				end if;
 			end if;
-	O <= temp;
 	end process;
+	O<=temp;
 	
 --https://en.wikibooks.org/wiki/VHDL_for_FPGA_Design/4-Bit_BCD_Counter_with_Clock_Enable
 end Behavioral;
