@@ -1,0 +1,4 @@
+vhdl isim_temp "counter2_VHDL.vhd"
+vhdl isim_temp "controllore.vhd"
+vhdl isim_temp "password.vhd"
+vhdl isim_temp "global_simple_tb.vhd"

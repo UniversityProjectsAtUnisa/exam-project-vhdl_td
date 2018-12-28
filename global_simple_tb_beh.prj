@@ -1,0 +1,4 @@
+vhdl work "counter2_VHDL.vhd"
+vhdl work "controllore.vhd"
+vhdl work "password.vhd"
+vhdl work "global_simple_tb.vhd"

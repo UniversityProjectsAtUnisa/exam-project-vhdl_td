@@ -1,1 +1,3 @@
-work	"contatore_mod4.vhd"
+work	"controllore.vhd"
+work	"counter2_VHDL.vhd"
+work	"password.vhd"

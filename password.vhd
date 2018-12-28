@@ -4,6 +4,7 @@
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use ieee.std_logic_arith.all;
 ----------------------------------------------------------------------------------
 
 entity password is
@@ -17,6 +18,9 @@ entity password is
 					badge_debug : out std_logic;	--ALTO QUANDO badge="11"
 					contatore_debug : out std_logic; --ALTO QUANDO tentativo_corrente="11"
 					tastierino_debug : out std_logic; --ALTO QUANDO non vi sono intersezioni tra righe e colonne
+					stato_testbench : out std_logic_vector(3 downto 0); --Vale il numero relativo allo stato
+					contatore_testbench : out std_logic_vector(1 downto 0); --Vale quanto tentativo_corrente 
+					controllore_testbench : out std_logic;
            porta_aperta : out  STD_LOGIC);
 end password;
 
@@ -118,12 +122,14 @@ begin
 			if rising_edge(clk) then
 					if rst='1' or badge_debug_temp='1' or contatore_debug_temp='1' or tastierino_debug_temp='1' then 
 							current_state	<=stato_iniziale;
+							stato_testbench<=conv_std_logic_vector(state'POS(stato_iniziale),4);
 							--DA TESTARE**********************************************************************************************
 							--porta_aperta	<='0';
 							--inserimento_corretto<='0';	rst_controllore<='1';
 							--prossimo_tentativo  <='0';	rst_tentativi	<='1';
 					else		
 							current_state<=next_state;
+							stato_testbench<=conv_std_logic_vector(state'POS(next_state),4);
 					end if;
 			end if;
 		end process;
@@ -315,6 +321,9 @@ begin
 ---------Fine struttura case-when----------------------------------------------------------------------------------------
 	end process;
 
-		
+--stato_testbench<=conv_std_logic_vector(state'POS(current_state),4); Non funziona fuori dal process, non so ancora perché;
+--stato_testbench<=conv_std_logic_vector(state'POS(next_state),4);	Forse cambiare current_state con next_state riduce i ritardi;
+contatore_testbench<=tentativo_corrente;
+controllore_testbench<=password_corretta;		
 end Behavioral;
 
