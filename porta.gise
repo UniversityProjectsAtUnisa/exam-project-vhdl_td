@@ -155,7 +155,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1546011727" xil_pn:in_ck="-7417298722765165328" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1546011727">
+    <transform xil_pn:end_ts="1546020826" xil_pn:in_ck="-7417298722765165328" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1546020825">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="accumulatore_mod3.vhd"/>
@@ -180,7 +180,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1546011727" xil_pn:in_ck="-7417298722765165328" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1546011727">
+    <transform xil_pn:end_ts="1546020828" xil_pn:in_ck="-7417298722765165328" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1546020828">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="accumulatore_mod3.vhd"/>
@@ -193,9 +193,11 @@
       <outfile xil_pn:name="global_simple_tb.vhd"/>
       <outfile xil_pn:name="password.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1546011799" xil_pn:in_ck="-7417298722765165328" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-4422360188051977228" xil_pn:start_ts="1546011796">
+    <transform xil_pn:end_ts="1546020832" xil_pn:in_ck="-7417298722765165328" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-4422360188051977228" xil_pn:start_ts="1546020828">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="fuse.log"/>
       <outfile xil_pn:name="global_simple_tb_beh.prj"/>
       <outfile xil_pn:name="global_simple_tb_isim_beh.exe"/>
@@ -203,9 +205,11 @@
       <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1546011800" xil_pn:in_ck="-8138253869806276579" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="372987572906707543" xil_pn:start_ts="1546011799">
+    <transform xil_pn:end_ts="1546020832" xil_pn:in_ck="-8138253869806276579" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="372987572906707543" xil_pn:start_ts="1546020832">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="global_simple_tb_isim_beh.wdb"/>
       <outfile xil_pn:name="isim.cmd"/>
       <outfile xil_pn:name="isim.log"/>

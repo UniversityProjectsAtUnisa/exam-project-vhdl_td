@@ -69,6 +69,20 @@ ARCHITECTURE behavior OF global_simple_tb IS
 
    -- Clock period definitions
    constant clk_period : time := 10 ns;
+	
+	-- Funzione che converte un std_logic_vector in una stringa
+	function to_string (a: std_logic_vector) return string is
+	variable b : string (1 to a'length) := (others => NUL);
+	variable stri : integer := 1; 
+		begin
+		for i in a'range loop
+			b(stri) := std_logic'image(a((i)))(2);
+			stri := stri+1;
+			end loop;
+		return b;
+   end function;
+	
+	shared variable stato_precedente_testbench : std_logic_vector(3 downto 0);
  
 BEGIN
  
@@ -413,5 +427,31 @@ BEGIN
 
       wait;
    end process;
+	
+	getsprecedentstate: process(clk)
+	begin
+		if(falling_edge(clk)) then
+			stato_precedente_testbench := stato_testbench;
+		end if;
+	end process;
+	
+	
+	chekoutput: process (clk) -- controllo che in s2 si apra solo al rilascio della cifra corretta
+	variable StateToState_col : std_logic_vector (1 to 3);
+	variable StateToState_row : std_logic_vector (1 to 4);
+		begin 
+		StateToState_col := col;
+		StateToState_row := row;
+		if (rising_edge(clk)) then
+			if (stato_testbench="0000") then 
+				if (stato_precedente_testbench = "1000") then
+					if ((StateToState_col ="000") and (StateToState_row="0000") and (controllore_testbench='0') and (contatore_testbench="10")) then
+						  assert (porta_aperta = '1') report "SR4 -> S0 corretta; tentativo: " & to_string(contatore_testbench) severity note;--------------------------------------------------------2--------------------------------------------------
+					else assert (porta_aperta = '1') report "SR4 -> S0 ERRATA; codice errore: " & to_string(StateToState_col) & to_string(StateToState_row) & std_logic'image(controllore_testbench)(2) & to_string(contatore_testbench) severity error;
+					end if;
+				end if;
+			end if;
+		end if;
+	end process chekoutput;
 
 END;

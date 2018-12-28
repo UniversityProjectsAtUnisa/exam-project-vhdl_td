@@ -319,10 +319,10 @@ begin
 				end case;
 ---------Fine struttura case-when----------------------------------------------------------------------------------------
 	end process;
-
+	
 --stato_testbench<=conv_std_logic_vector(state'POS(current_state),4); Non funziona fuori dal process, non so ancora perché;
 --stato_testbench<=conv_std_logic_vector(state'POS(next_state),4);	Forse cambiare current_state con next_state riduce i ritardi;
-contatore_testbench<=tentativo_corrente;
-controllore_testbench<=password_corretta;		
+contatore_testbench	 <= tentativo_corrente;
+controllore_testbench <= password_corretta;		
 end Behavioral;
 
