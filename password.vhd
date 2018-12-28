@@ -10,17 +10,16 @@ use ieee.std_logic_arith.all;
 entity password is
 -- Generic (rowN1, rowN2, rowN3, rowN4 : in std_logic_vector; (3 downto 0);
 --				colN1, colN2, colN3, colN4 : in std_logic_vector (2 downto 0));
-    Port ( clk : in  STD_LOGIC;
-           rst : in  STD_LOGIC;
-           row : in  STD_LOGIC_VECTOR (3 downto 0);
-           col : in  STD_LOGIC_VECTOR (2 downto 0);
+    Port ( clk :   in  STD_LOGIC;
+           rst :   in  STD_LOGIC;
+           row :   in  STD_LOGIC_VECTOR (3 downto 0);
+           col :   in  STD_LOGIC_VECTOR (2 downto 0);
            badge : in  STD_LOGIC_VECTOR (1 downto 0);
-					badge_debug : out std_logic;	--ALTO QUANDO badge="11"
-					contatore_debug : out std_logic; --ALTO QUANDO tentativo_corrente="11"
-					tastierino_debug : out std_logic; --ALTO QUANDO non vi sono intersezioni tra righe e colonne
-					stato_testbench : out std_logic_vector(3 downto 0); --Vale il numero relativo allo stato
-					contatore_testbench : out std_logic_vector(1 downto 0); --Vale quanto tentativo_corrente 
+					----------------------------------------------------------------------------------------------
+					stato_testbench : 		out std_logic_vector(3 downto 0); --Vale il numero relativo allo stato
+					contatore_testbench : 	out std_logic_vector(1 downto 0); --Vale quanto tentativo_corrente 
 					controllore_testbench : out std_logic;
+					----------------------------------------------------------------------------------------------
            porta_aperta : out  STD_LOGIC);
 end password;
 
@@ -30,46 +29,49 @@ architecture Behavioral of password is
 --INIZIO DICHIARAZIONE COMPONENTI--
 --componente che ricorda 0 se la password inserita è sbagliata, 1 altrimenti.
 component controllore is
-    Port ( rst : in  STD_LOGIC;
-           I : in  STD_LOGIC;
-           O : out  STD_LOGIC);
+    Port ( rst :  in   STD_LOGIC;
+           I : 	in   STD_LOGIC;
+           O : 	out  STD_LOGIC);
 end component;
 
 --componente che conta i tentativi di inserimento disponibili.
 component counter2_VHDL is
-    Port ( En : in  STD_LOGIC;
-           clk : in  STD_LOGIC;
-           rst : in  STD_LOGIC;
-           O : out  STD_LOGIC_VECTOR (1 downto 0));
+    Port ( En :  in   STD_LOGIC;
+           clk : in   STD_LOGIC;
+           rst : in   STD_LOGIC;
+           O :   out  STD_LOGIC_VECTOR (1 downto 0));
 end component;
 --FINE DICHIARAZIONE COMPONENTI--
 
 
 --dichiarazione segnali controllore
-signal rst_controllore : std_logic;
+signal rst_controllore : 		std_logic;
 signal inserimento_corretto : std_logic;
-signal password_corretta : std_logic;
+signal password_corretta : 	std_logic;
 
 --dichiarazione segnali counter2_VHDL
-signal prossimo_tentativo: std_logic;
+signal prossimo_tentativo: 	std_logic;
 --			*clk*
-signal rst_tentativi: std_logic;
-signal tentativo_corrente: std_logic_vector (1 downto 0);
+signal rst_tentativi: 			std_logic;
+signal tentativo_corrente: 	std_logic_vector (1 downto 0);
 
 
---dichiarazione 10 stati e segnali di stato
-type state is (stato_iniziale, 
+--dichiarazione 10 stati
+type state is ( stato_iniziale, 
 stato_lettura1, stato_attesa_rilascio1, 
 stato_lettura2, stato_attesa_rilascio2, 
 stato_lettura3, stato_attesa_rilascio3, 
 stato_lettura4, stato_attesa_rilascio4, 
 stato_porta_aperta);
+
+--dichiarazione segnali di stato
 signal current_state, next_state : state;
 
---dichiarazione segnali di debug
-signal badge_debug_temp : std_logic;
-signal contatore_debug_temp : std_logic;
-signal tastierino_debug_temp : std_logic;
+--dichiarazione segnali di bug
+signal badge_bug : 	    std_logic; --ALTO QUANDO badge="11"
+signal contatore_bug :   std_logic; --ALTO QUANDO tentativo_corrente="11"
+signal tastierino_bug :  std_logic; --ALTO QUANDO non vi sono intersezioni tra righe e colonne
+
 
 ----------------------*****************-------------------------
 ----------------------Temporary section-------------------------
@@ -86,50 +88,47 @@ constant colN4:  std_logic_vector (2 downto 0) :=  "001";
 
 begin
 --PORT MAPPING
-	controllore_inserimento: controllore port map(rst_controllore, inserimento_corretto, password_corretta);
-	contatore_tentativi:   counter2_VHDL port map(prossimo_tentativo, clk, rst_tentativi, tentativo_corrente);
+	controllore_inserimento: controllore 	port map(rst_controllore, inserimento_corretto, password_corretta);
+	
+	contatore_tentativi:   	 counter2_VHDL port map(prossimo_tentativo, clk, rst_tentativi, tentativo_corrente);
 
 -----------------*************************----------------------
------------------Gestione segnali di debug----------------------
-	debug_process: process(badge, tentativo_corrente, row, col)
+-----------------Gestione segnali di bug------------------------
+	bug_process: process(badge, tentativo_corrente, row, col)
 		begin
------------------uscita badge_debug-----------------------------
+------------------segnale badge_bug-----------------------------
 		if badge="11" then	
-				badge_debug_temp<='1';
-		else  badge_debug_temp<='0';
+				badge_bug<='1';
+		else  badge_bug<='0';
 		end if;
------------------uscita contatore_debug-------------------------
+------------------segnale contatore_bug-------------------------
 		if tentativo_corrente="11" then	
-				contatore_debug_temp<='1';
-		else  contatore_debug_temp<='0';
+				contatore_bug<='1';
+		else  contatore_bug<='0';
 		end if;
------------------uscita tastierino_debug------------------------
+------------------segnale tastierino_bug------------------------
 		if row="0000" xor col="000" then	
-				tastierino_debug_temp<='1';
-		else  tastierino_debug_temp<='0';
+				tastierino_bug<='1';
+		else  tastierino_bug<='0';
 		end if;
 	end process;
------------------Assegnamenti finali fuori dal process----------
-	badge_debug			<=badge_debug_temp;
-	contatore_debug	<=contatore_debug_temp;
-	tastierino_debug	<=tastierino_debug_temp;
 -----------------**************************---------------------
 	
 --Processo sincrono che valuta a tempo di clock il nuovo stato, sulla base del reset e dei processi concorrenti.
---Se il reset è alto o si verifica un caso non accettabile (debug) ritorna allo stato iniziale con uscita 0RR.
+--Se il reset è alto o si verifica un caso non accettabile (bug) ritorna allo stato iniziale con uscita 0RR.
 	Sync_process: process(clk, rst)
 		begin
 			if rising_edge(clk) then
-					if rst='1' or badge_debug_temp='1' or contatore_debug_temp='1' or tastierino_debug_temp='1' then 
-							current_state	<=stato_iniziale;
-							stato_testbench<=conv_std_logic_vector(state'POS(stato_iniziale),4);
+					if rst='1' or badge_bug='1' or contatore_bug='1' or tastierino_bug='1' then 
+							current_state	 <= stato_iniziale;
+							stato_testbench <= conv_std_logic_vector(state'POS(stato_iniziale),4);
 							--DA TESTARE**********************************************************************************************
 							--porta_aperta	<='0';
 							--inserimento_corretto<='0';	rst_controllore<='1';
 							--prossimo_tentativo  <='0';	rst_tentativi	<='1';
 					else		
-							current_state<=next_state;
-							stato_testbench<=conv_std_logic_vector(state'POS(next_state),4);
+							current_state	 <= next_state;
+							stato_testbench <= conv_std_logic_vector(state'POS(next_state),4);
 					end if;
 			end if;
 		end process;

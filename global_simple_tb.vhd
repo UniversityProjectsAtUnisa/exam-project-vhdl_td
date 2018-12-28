@@ -46,9 +46,6 @@ ARCHITECTURE behavior OF global_simple_tb IS
          row : IN  std_logic_vector(3 downto 0);
          col : IN  std_logic_vector(2 downto 0);
          badge : IN  std_logic_vector(1 downto 0);
-         badge_debug : OUT  std_logic;
-         contatore_debug : OUT  std_logic;
-         tastierino_debug : OUT  std_logic;
 					stato_testbench : out std_logic_vector(3 downto 0); --Vale il numero relativo allo stato
 					contatore_testbench : out std_logic_vector(1 downto 0); --Vale quanto tentativo_corrente 
 					controllore_testbench : out std_logic;
@@ -65,9 +62,6 @@ ARCHITECTURE behavior OF global_simple_tb IS
    signal badge : std_logic_vector(1 downto 0) := (others => '0');
 
  	--Outputs
-   signal badge_debug : std_logic;
-   signal contatore_debug : std_logic;
-   signal tastierino_debug : std_logic;
    signal porta_aperta : std_logic;
 	signal stato_testbench : std_logic_vector(3 downto 0); --Vale il numero relativo allo stato
 	signal contatore_testbench : std_logic_vector(1 downto 0); --Vale quanto tentativo_corrente 
@@ -85,9 +79,6 @@ BEGIN
           row => row,
           col => col,
           badge => badge,
-          badge_debug => badge_debug,
-          contatore_debug => contatore_debug,
-          tastierino_debug => tastierino_debug,
 			 stato_testbench=>stato_testbench,
 			 contatore_testbench=>contatore_testbench,
 			 controllore_testbench=>controllore_testbench,
