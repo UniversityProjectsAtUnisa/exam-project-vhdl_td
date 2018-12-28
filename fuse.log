@@ -21,4 +21,4 @@ Time Resolution for simulation is 1ps.
 Compiled 11 VHDL Units
 Built simulation executable C:/Users/marco/Documents/XilinxProjects/porta/global_simple_tb_isim_beh.exe
 Fuse Memory Usage: 34628 KB
-Fuse CPU Usage: 515 ms
+Fuse CPU Usage: 530 ms

@@ -83,6 +83,7 @@ ARCHITECTURE behavior OF global_simple_tb IS
    end function;
 	
 	shared variable stato_precedente_testbench : std_logic_vector(3 downto 0);
+	shared variable number_trans: integer := 0;
  
 BEGIN
  
@@ -426,32 +427,38 @@ BEGIN
 		wait for 50 ns;
 
       wait;
-   end process;
+   end process stim_proc;
 	
+	--Lo scopo di questo processo è di registrare lo stato precedente per controllare che la transizione sia avvenuta con successo nelle condizioni corrette
+	--La difficoltà nasce dal fatto che gli input e lo stato corrente non sono sempre sufficienti ad identificare univocamente lo stato di provenienza.
+	--La valutazione del falling_edge garantisce che vi sia una certa distanza temporale (mezzo ciclo di clock) con la valutazione dello stato corrente successivo
+	--Così che possano esserci momenti in cui lo stato corrente e il precedente non siano uguali.
 	getsprecedentstate: process(clk)
 	begin
 		if(falling_edge(clk)) then
 			stato_precedente_testbench := stato_testbench;
 		end if;
-	end process;
+	end process getsprecedentstate;
 	
-	
-	chekoutput: process (clk) -- controllo che in s2 si apra solo al rilascio della cifra corretta
+	-- modificato la sensitivity list, rimossa la dipendenza dal clock
+	-- Secondo la struttura precedente, ad ogni rising_edge(clk) lo stato corrente e il precedente risultavano uguali
+	-- La sensitivity list (stato_testbench) garantisce un ambiente di controllo coerente in cui lo stato corrente e quello precedente possano essere diversi
+	chekoutput: process (stato_testbench) -- controllo che le transizioni e le uscite siano corrette per tutti i casi
 	variable StateToState_col : std_logic_vector (1 to 3);
 	variable StateToState_row : std_logic_vector (1 to 4);
 		begin 
 		StateToState_col := col;
 		StateToState_row := row;
-		if (rising_edge(clk)) then
-			if (stato_testbench="0000") then 
-				if (stato_precedente_testbench = "1000") then
-					if ((StateToState_col ="000") and (StateToState_row="0000") and (controllore_testbench='0') and (contatore_testbench="10")) then
-						  assert (porta_aperta = '1') report "SR4 -> S0 corretta; tentativo: " & to_string(contatore_testbench) severity note;--------------------------------------------------------2--------------------------------------------------
-					else assert (porta_aperta = '1') report "SR4 -> S0 ERRATA; codice errore: " & to_string(StateToState_col) & to_string(StateToState_row) & std_logic'image(controllore_testbench)(2) & to_string(contatore_testbench) severity error;
-					end if;
-				end if;
-			end if;
-		end if;
+		number_trans:=number_trans+1;
+		case stato_testbench is
+		when "0000" =>				if (stato_precedente_testbench = "1000") then
+											if ((StateToState_col ="000") and (StateToState_row="0000") and (controllore_testbench='0') and (contatore_testbench="10")) then
+												assert (porta_aperta = '1') report "SR4 -> S0 corretta; tentativo: " & to_string(contatore_testbench) & "; Numero di transizioni verificate: " & integer'image(number_trans) severity note;--------------------------------------------------------2--------------------------------------------------
+											else assert (porta_aperta = '1') report "SR4 -> S0 ERRATA; Codice errore: " & to_string(StateToState_col) & to_string(StateToState_row) & std_logic'image(controllore_testbench)(2) & to_string(contatore_testbench) & "; Numero di transizioni verificate: " & integer'image(number_trans) severity error;
+											end if;
+										end if;
+		when others => 			if(1=0) then report "others"; end if;
+		end case;
 	end process chekoutput;
 
 END;
