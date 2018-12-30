@@ -30,7 +30,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity controllore is	-- considera se farlo sincrono
-    Port ( --clk : in std_logic;
+    Port ( clk : in std_logic;
 			  rst : in  STD_LOGIC;
            I : in  STD_LOGIC;
            O : out  STD_LOGIC);
@@ -38,19 +38,21 @@ end controllore;
 
 architecture Behavioral of controllore is
 --Dichiaro segnale per utilizzare la retroazione
-signal S : std_logic;
+--signal S : std_logic;
 begin
-O<=S;
-S<=rst or (S and I); --Segnale S in retroazione
+--O<=S;
+--S<=rst or (S and I); --Segnale S in retroazione
 
---process(rst,I)
---	begin
---		if rst='1' then
---				O<='1';
---		elsif I = '0' then
---				O<='0';
---		end if;
---end process;
+sync_process: process(clk)
+	begin
+		if rising_edge(clk) then
+			if rst='1' then
+					O<='1';
+			elsif I = '0' then
+					O<='0';
+			end if;
+		end if;
+end process sync_process;
 
 
 end Behavioral;

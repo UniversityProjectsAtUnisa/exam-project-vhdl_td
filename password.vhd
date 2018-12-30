@@ -29,7 +29,8 @@ architecture Behavioral of password is
 --INIZIO DICHIARAZIONE COMPONENTI--
 --componente che ricorda 0 se la password inserita è sbagliata, 1 altrimenti.
 component controllore is
-    Port ( rst :  in   STD_LOGIC;
+    Port ( clk: 	in   STD_LOGIC;
+			  rst :  in   STD_LOGIC;
            I : 	in   STD_LOGIC;
            O : 	out  STD_LOGIC);
 end component;
@@ -88,7 +89,7 @@ constant colN4:  std_logic_vector (2 downto 0) :=  "001";
 
 begin
 --PORT MAPPING
-	controllore_inserimento: controllore 	port map(rst_controllore, inserimento_corretto, password_corretta);
+	controllore_inserimento: controllore 	port map(clk, rst_controllore, inserimento_corretto, password_corretta);
 	
 	contatore_tentativi:   	 counter2_VHDL port map(prossimo_tentativo, clk, rst_tentativi, tentativo_corrente);
 
@@ -146,6 +147,7 @@ begin
 																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
 																else
 																			next_state		<=stato_iniziale;
+																			porta_aperta	<='0';
 																			inserimento_corretto<='0';	rst_controllore<='1'; 
 																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
 																end if;
