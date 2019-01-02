@@ -8,8 +8,8 @@ use ieee.std_logic_arith.all;
 ----------------------------------------------------------------------------------
 
 entity password is
--- Generic (rowN1, rowN2, rowN3, rowN4 : in std_logic_vector; (3 downto 0);
---				colN1, colN2, colN3, colN4 : in std_logic_vector (2 downto 0));
+ Generic (  rowN1, rowN2, rowN3, rowN4 : in std_logic_vector (3 downto 0);
+				colN1, colN2, colN3, colN4 : in std_logic_vector (2 downto 0));
     Port ( clk :   in  STD_LOGIC;
            rst :   in  STD_LOGIC;
            row :   in  STD_LOGIC_VECTOR (3 downto 0);
@@ -46,6 +46,7 @@ end component;
 
 
 --dichiarazione segnali controllore
+--       *clk*
 signal rst_controllore : 		std_logic;
 signal inserimento_corretto : std_logic;
 signal password_corretta : 	std_logic;
@@ -76,14 +77,14 @@ signal tastierino_bug :  std_logic; --ALTO QUANDO non vi sono intersezioni tra r
 
 ----------------------*****************-------------------------
 ----------------------Temporary section-------------------------
-constant rowN1:  std_logic_vector (3 downto 0) := "1000";
-constant colN1:  std_logic_vector (2 downto 0) :=  "001";
-constant rowN2:  std_logic_vector (3 downto 0) := "1000";
-constant colN2:  std_logic_vector (2 downto 0) :=  "001";
-constant rowN3:  std_logic_vector (3 downto 0) := "1000";
-constant colN3:  std_logic_vector (2 downto 0) :=  "001";
-constant rowN4:  std_logic_vector (3 downto 0) := "1000";
-constant colN4:  std_logic_vector (2 downto 0) :=  "001";
+--constant rowN1:  std_logic_vector (3 downto 0) := "1000";
+--constant colN1:  std_logic_vector (2 downto 0) :=  "001";
+--constant rowN2:  std_logic_vector (3 downto 0) := "1000";
+--constant colN2:  std_logic_vector (2 downto 0) :=  "001";
+--constant rowN3:  std_logic_vector (3 downto 0) := "1000";
+--constant colN3:  std_logic_vector (2 downto 0) :=  "001";
+--constant rowN4:  std_logic_vector (3 downto 0) := "1000";
+--constant colN4:  std_logic_vector (2 downto 0) :=  "001";
 ----------------------------------------------------------------
 ----------------------*****************-------------------------
 

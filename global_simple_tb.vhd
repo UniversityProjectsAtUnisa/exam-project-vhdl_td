@@ -40,8 +40,9 @@ ARCHITECTURE behavior OF global_simple_tb IS
     -- Component Declaration for the Unit Under Test (UUT)
  
     COMPONENT password
-    PORT(
-         clk : IN  std_logic;
+	 Generic (rowN1, rowN2, rowN3, rowN4 : in std_logic_vector (3 downto 0);
+				colN1, colN2, colN3, colN4 : in std_logic_vector (2 downto 0));
+    PORT(clk : IN  std_logic;
          rst : IN  std_logic;
          row : IN  std_logic_vector(3 downto 0);
          col : IN  std_logic_vector(2 downto 0);
@@ -88,7 +89,16 @@ ARCHITECTURE behavior OF global_simple_tb IS
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: password PORT MAP (
+   uut: password 
+	Generic map (rowN1 => "1000",
+					 rowN2 => "1000",
+					 rowN3 => "1000",
+					 rowN4 => "1000",
+					 colN1 =>  "100",
+					 colN2 =>  "001",
+					 colN3 =>  "001",
+					 colN4 =>  "001")
+	PORT MAP (
           clk => clk,
           rst => rst,
           row => row,
