@@ -17,3 +17,7 @@ map -intstyle ise -p xc6slx4-tqg144-3 -w -logic_opt off -ol high -t 1 -xt 0 -reg
 par -w -intstyle ise -ol high -mt off controllore_map.ncd controllore.ncd controllore.pcf 
 trce -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml controllore.twx controllore.ncd -o controllore.twr controllore.pcf 
 xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/controllore.xst" -ofn "C:/Users/marco/Documents/XilinxProjects/porta/controllore.syr" 
+xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/controllore.xst" -ofn "C:/Users/marco/Documents/XilinxProjects/porta/controllore.syr" 
+xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/controllore.xst" -ofn "C:/Users/marco/Documents/XilinxProjects/porta/controllore.syr" 
+xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/controllore.xst" -ofn "C:/Users/marco/Documents/XilinxProjects/porta/controllore.syr" 
+xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/controllore.xst" -ofn "C:/Users/marco/Documents/XilinxProjects/porta/controllore.syr" 
