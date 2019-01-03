@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "secureip" -o "C:/Users/marco/Documents/XilinxProjects/porta/global_simple_tb_isim_beh.exe" -prj "C:/Users/marco/Documents/XilinxProjects/porta/global_simple_tb_beh.prj" "work.global_simple_tb" 
+-intstyle "ise" -incremental -lib "secureip" -o "C:/Users/marco/Documents/XilinxProjects/porta/global_hard_tb_isim_beh.exe" -prj "C:/Users/marco/Documents/XilinxProjects/porta/global_hard_tb_beh.prj" "work.global_hard_tb" 

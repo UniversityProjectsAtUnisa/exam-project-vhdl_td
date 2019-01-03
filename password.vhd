@@ -69,10 +69,8 @@ stato_porta_aperta);
 --dichiarazione segnali di stato
 signal current_state, next_state : state;
 
---dichiarazione segnali di bug
-signal badge_bug : 	    std_logic; --ALTO QUANDO badge="11"
-signal contatore_bug :   std_logic; --ALTO QUANDO tentativo_corrente="11"
-signal tastierino_bug :  std_logic; --ALTO QUANDO non vi sono intersezioni tra righe e colonne
+--dichiarazione segnale di bug
+signal bug : std_logic := '0'; --ALTO QUANDO badge="11" O tentativo_corrente="11" O non vi sono intersezioni tra righe e colonne
 
 
 ----------------------*****************-------------------------
@@ -94,54 +92,42 @@ begin
 	
 	contatore_tentativi:   	 counter2_VHDL port map(prossimo_tentativo, clk, rst_tentativi, tentativo_corrente);
 
------------------*************************----------------------
------------------Gestione segnali di bug------------------------
+-----------------********************-----------------------
+-----------------Gestione casi di bug-----------------------
 	bug_process: process(badge, tentativo_corrente, row, col)
 		begin
-------------------segnale badge_bug-----------------------------
+------------------Errore di badge---------------------------
 		if badge="11" then	
-				badge_bug<='1';
-		else  badge_bug<='0';
-		end if;
-------------------segnale contatore_bug-------------------------
-		if tentativo_corrente="11" then	
-				contatore_bug<='1';
-		else  contatore_bug<='0';
-		end if;
-------------------segnale tastierino_bug------------------------
-		if row="0000" xor col="000" then	
-				tastierino_bug<='1';
-		else  tastierino_bug<='0';
+				bug<='1';
+------------------Errore di contatore-----------------------
+		elsif tentativo_corrente="11" then	
+				bug<='1';
+------------------Errore di tastierino----------------------
+		elsif row="0000" xor col="000" then	
+				bug<='1';
+		else 	bug<='0';
 		end if;
 	end process;
------------------**************************---------------------
+-----------------**************************-----------------
 	
 --Processo sincrono che valuta a tempo di clock il nuovo stato, sulla base del reset e dei processi concorrenti.
 --Se il reset è alto o si verifica un caso non accettabile (bug) ritorna allo stato iniziale con uscita 0RR.
-	Sync_process: process(clk, rst)
+	Sync_process: process(clk)
 		begin
-			if rising_edge(clk) then
-					if rst='1' or badge_bug='1' or contatore_bug='1' or tastierino_bug='1' then 
-							current_state	 <= stato_iniziale;
-							stato_testbench <= conv_std_logic_vector(state'POS(stato_iniziale),4);
-							--DA TESTARE**********************************************************************************************
-							--porta_aperta	<='0';
-							--inserimento_corretto<='0';	rst_controllore<='1';
-							--prossimo_tentativo  <='0';	rst_tentativi	<='1';
-					else		
+			if rising_edge(clk) then	
 							current_state	 <= next_state;
 							stato_testbench <= conv_std_logic_vector(state'POS(next_state),4);
-					end if;
 			end if;
 		end process;
 ----------------------*****************-------------------------
 
 --Processo asincrono che valuta i passaggi di stato e le uscite in una struttura automatica di tipo Mealy
-	State_Transition_and_output: process (current_state, row, col, badge, rst)
+	State_Transition_and_output: process (current_state, row, col, badge, bug, rst)
 			begin
 ---------Inizio struttura case-when--------------------------------------------------------------------------------------
 				case current_state is
-				when stato_iniziale =>					if rst='1' then
+				when stato_iniziale =>					if rst='1' or bug='1' then 
+																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
 																			inserimento_corretto<='0';	rst_controllore<='1'; 
 																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
@@ -157,7 +143,8 @@ begin
 																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
 																end if;
 -------------------------------------------------------------------------------------------------------------------------												
-				when stato_lettura1 =>					if rst='1' then
+				when stato_lettura1 =>					if rst='1' or bug='1' then 
+																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
 																			inserimento_corretto<='0';	rst_controllore<='1'; 
 																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
@@ -178,7 +165,8 @@ begin
 																			prossimo_tentativo  <='0';	rst_tentativi	<='0';
 																end if;
 -------------------------------------------------------------------------------------------------------------------------
-				when stato_attesa_rilascio1 =>		if rst='1' then
+				when stato_attesa_rilascio1 =>		if rst='1' or bug='1' then 
+																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
 																			inserimento_corretto<='0';	rst_controllore<='1'; 
 																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
@@ -199,7 +187,8 @@ begin
 																			prossimo_tentativo  <='0';	rst_tentativi	<='0';
 																end if;
 -------------------------------------------------------------------------------------------------------------------------
-				when stato_lettura2 =>					if rst='1' then
+				when stato_lettura2 =>					if rst='1' or bug='1' then 
+																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
 																			inserimento_corretto<='0';	rst_controllore<='1'; 
 																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
@@ -220,7 +209,8 @@ begin
 																			prossimo_tentativo  <='0';	rst_tentativi	<='0';
 																end if;
 -------------------------------------------------------------------------------------------------------------------------
-				when stato_attesa_rilascio2 =>		if rst='1' then
+				when stato_attesa_rilascio2 =>		if rst='1' or bug='1' then 
+																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
 																			inserimento_corretto<='0';	rst_controllore<='1'; 
 																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
@@ -241,7 +231,8 @@ begin
 																			prossimo_tentativo  <='0';	rst_tentativi	<='0';
 																end if;
 -------------------------------------------------------------------------------------------------------------------------
-				when stato_lettura3 =>					if rst='1' then
+				when stato_lettura3 =>					if rst='1' or bug='1' then 
+																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
 																			inserimento_corretto<='0';	rst_controllore<='1'; 
 																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
@@ -262,7 +253,8 @@ begin
 																			prossimo_tentativo  <='0';	rst_tentativi	<='0';
 																end if;
 -------------------------------------------------------------------------------------------------------------------------
-				when stato_attesa_rilascio3 =>		if rst='1' then
+				when stato_attesa_rilascio3 =>		if rst='1' or bug='1' then 
+																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
 																			inserimento_corretto<='0';	rst_controllore<='1'; 
 																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
@@ -283,7 +275,8 @@ begin
 																			prossimo_tentativo  <='0';	rst_tentativi	<='0';
 																end if;
 -------------------------------------------------------------------------------------------------------------------------
-				when stato_lettura4 =>					if rst='1' then
+				when stato_lettura4 =>					if rst='1' or bug='1' then 
+																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
 																			inserimento_corretto<='0';	rst_controllore<='1'; 
 																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
@@ -304,7 +297,8 @@ begin
 																			prossimo_tentativo  <='0';	rst_tentativi	<='0';
 																end if;
 -------------------------------------------------------------------------------------------------------------------------
-				when stato_attesa_rilascio4 =>		if rst='1' then
+				when stato_attesa_rilascio4 =>		if rst='1' or bug='1' then 
+																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
 																			inserimento_corretto<='0';	rst_controllore<='1'; 
 																			prossimo_tentativo  <='0';	rst_tentativi	<='1';
@@ -343,7 +337,8 @@ begin
 																			prossimo_tentativo  <='0';	rst_tentativi	<='0';
 																end if;
 -------------------------------------------------------------------------------------------------------------------------
-				when stato_porta_aperta =>				if rst='1' then
+				when stato_porta_aperta =>				if rst='1' or bug='1' then 
+																			next_state		<=stato_iniziale;
 																			porta_aperta	<='0'; 
 																			inserimento_corretto<='0';	rst_controllore<='1'; 
 																			prossimo_tentativo  <='0';	rst_tentativi	<='1';

@@ -27,6 +27,7 @@
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
+use ieee.std_logic_arith.all;
  
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -40,6 +41,8 @@ ARCHITECTURE behavior OF global_hard_tb IS
     -- Component Declaration for the Unit Under Test (UUT)
  
     COMPONENT password
+	 Generic (rowN1, rowN2, rowN3, rowN4 : in std_logic_vector (3 downto 0);
+				colN1, colN2, colN3, colN4 : in std_logic_vector (2 downto 0));
     PORT(
          clk : IN  std_logic;
          rst : IN  std_logic;
@@ -74,7 +77,16 @@ ARCHITECTURE behavior OF global_hard_tb IS
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: password PORT MAP (
+   uut: password 
+			Generic map (rowN1 => "1000",
+					 rowN2 => "1000",
+					 rowN3 => "1000",
+					 rowN4 => "1000",
+					 colN1 =>  "001",
+					 colN2 =>  "001",
+					 colN3 =>  "001",
+					 colN4 =>  "001")
+			PORT MAP (
           clk => clk,
           rst => rst,
           row => row,
@@ -96,6 +108,7 @@ BEGIN
    end process;
  
 
+--Provo almeno una volta tutte le singole possibili transizioni tra stati dell'automa
    -- Stimulus process
    stim_proc: process
    begin		
@@ -104,6 +117,308 @@ BEGIN
 		rst<='1';
       wait for 10 ns;	
 		rst<='0';
+		
+		badge <= "00";
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		badge <= "01";
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		badge <= "00";
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "0100";
+		col <= "010";
+		wait for 10 ns;
+-------------------------------------------------		
+		rst<='1';
+      wait for 10 ns;	
+		rst<='0';
+		
+		badge <= "01";
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		badge <= "00";
+		row <= "1000";
+		col <= "001";
+		wait for 10 ns;
+		
+		row <= "1000";
+		col <= "001";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "0100";
+		col <= "010";
+		wait for 10 ns;
+
+----
+
+		rst<='1';
+      wait for 10 ns;	
+		rst<='0';
+		
+		badge <= "01";
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		badge <= "00";
+		row <= "1000";
+		col <= "001";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "1000";
+		col <= "001";
+		wait for 10 ns;
+		
+		row <= "1000";
+		col <= "001";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "0100";
+		col <= "010";
+		wait for 10 ns;
+		
+--
+		
+		rst<='1';
+      wait for 10 ns;	
+		rst<='0';
+		
+		badge <= "01";
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		badge <= "00";
+		row <= "1000";
+		col <= "001";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "1000";
+		col <= "001";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "1000";
+		col <= "001";
+		wait for 10 ns;
+		
+		row <= "1000";
+		col <= "001";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "0100";
+		col <= "010";
+		wait for 10 ns;
+		
+--
+		
+		rst<='1';
+      wait for 10 ns;	
+		rst<='0';
+		
+		badge <= "01";
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		badge <= "00";
+		row <= "1000";
+		col <= "001";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "1000";
+		col <= "001";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "1000";
+		col <= "001";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "1000";
+		col <= "001";
+		wait for 10 ns;
+		
+		row <= "1000";
+		col <= "001";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		badge <= "10";
+		wait for 10 ns;
+			
+--
+		
+		badge <="00";
+		rst <= '1';
+		wait for 10 ns;
+		rst <= '0';
+		
+		badge <= "01";
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		badge <= "00";
+		row <= "0100";
+		col <= "010";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "0100";
+		col <= "010";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "0100";
+		col <= "010";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "0100";
+		col <= "010";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+--
+		
+		row <= "0100";
+		col <= "010";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "0100";
+		col <= "010";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "0100";
+		col <= "010";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "0100";
+		col <= "010";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+--
+		
+		row <= "0100";
+		col <= "010";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "0100";
+		col <= "010";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "0100";
+		col <= "010";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
+		row <= "0100";
+		col <= "010";
+		wait for 10 ns;
+		
+		row <= "0000";
+		col <= "000";
+		wait for 10 ns;
+		
 		
       wait for clk_period;
 

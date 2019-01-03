@@ -5,13 +5,13 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompiler" num="92" delta="new" >"C:\Users\marco\Documents\XilinxProjects\porta\password.vhd" Line 280: <arg fmt="%s" index="1">password_corretta</arg> should be on the sensitivity list of the process
+<msg type="warning" file="HDLCompiler" num="92" delta="new" >"C:\Users\marco\Documents\XilinxProjects\porta\password.vhd" Line 313: <arg fmt="%s" index="1">password_corretta</arg> should be on the sensitivity list of the process
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="92" delta="new" >"C:\Users\marco\Documents\XilinxProjects\porta\password.vhd" Line 285: <arg fmt="%s" index="1">password_corretta</arg> should be on the sensitivity list of the process
+<msg type="warning" file="HDLCompiler" num="92" delta="new" >"C:\Users\marco\Documents\XilinxProjects\porta\password.vhd" Line 318: <arg fmt="%s" index="1">password_corretta</arg> should be on the sensitivity list of the process
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="92" delta="new" >"C:\Users\marco\Documents\XilinxProjects\porta\password.vhd" Line 290: <arg fmt="%s" index="1">password_corretta</arg> should be on the sensitivity list of the process
+<msg type="warning" file="HDLCompiler" num="92" delta="new" >"C:\Users\marco\Documents\XilinxProjects\porta\password.vhd" Line 323: <arg fmt="%s" index="1">password_corretta</arg> should be on the sensitivity list of the process
 </msg>
 
 <msg type="info" file="Xst" num="2261" delta="new" >The FF/Latch &lt;<arg fmt="%s" index="1">stato_testbench_3</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">password</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;current_state_FSM_FFd1&gt; </arg>
