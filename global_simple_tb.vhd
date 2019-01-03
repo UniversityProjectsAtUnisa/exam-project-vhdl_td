@@ -83,8 +83,7 @@ ARCHITECTURE behavior OF global_simple_tb IS
 		return b;
    end function;
 	
-	shared variable stato_precedente_testbench : std_logic_vector(3 downto 0);
-	shared variable number_trans: integer := 0;
+	signal stato_precedente_testbench : std_logic_vector(3 downto 0);
  
 BEGIN
  
@@ -118,10 +117,10 @@ BEGIN
 		clk <= '1';
 		wait for clk_period/2;
    end process;
- 
 
    -- Stimulus process
    stim_proc: process
+	
    begin		
       -- hold reset state for 100 ns.
 		-- Apertura in un tentativo
@@ -443,32 +442,36 @@ BEGIN
 	--La difficoltà nasce dal fatto che gli input e lo stato corrente non sono sempre sufficienti ad identificare univocamente lo stato di provenienza.
 	--La valutazione del falling_edge garantisce che vi sia una certa distanza temporale (mezzo ciclo di clock) con la valutazione dello stato corrente successivo
 	--Così che possano esserci momenti in cui lo stato corrente e il precedente non siano uguali.
-	getsprecedentstate: process(clk)
-	begin
-		if(falling_edge(clk)) then
-			stato_precedente_testbench := stato_testbench;
-		end if;
-	end process getsprecedentstate;
+--	getsprecedentstate: process(clk)
+--	begin
+--		if(falling_edge(clk)) then
+--			stato_precedente_testbench <= stato_testbench;
+--		end if;
+--	end process getsprecedentstate;
 	
-	-- modificato la sensitivity list, rimossa la dipendenza dal clock
 	-- Secondo la struttura precedente, ad ogni rising_edge(clk) lo stato corrente e il precedente risultavano uguali
-	-- La sensitivity list (stato_testbench) garantisce un ambiente di controllo coerente in cui lo stato corrente e quello precedente possano essere diversi
-	chekoutput: process (stato_testbench) -- controllo che le transizioni e le uscite siano corrette per tutti i casi
-	variable StateToState_col : std_logic_vector (1 to 3);
-	variable StateToState_row : std_logic_vector (1 to 4);
+	CHEKOUTPUT: process (clk) -- controllo che le transizioni e le uscite siano corrette per tutti i casi
 		begin 
-		StateToState_col := col;
-		StateToState_row := row;
-		number_trans:=number_trans+1;
-		case stato_testbench is
-		when "0000" =>				if (stato_precedente_testbench = "1000") then
-											if ((StateToState_col ="000") and (StateToState_row="0000") and (controllore_testbench='0') and (contatore_testbench="10")) then
-												assert (porta_aperta = '1') report "SR4 -> S0 corretta; tentativo: " & to_string(contatore_testbench) & "; Numero di transizioni verificate: " & integer'image(number_trans) severity note;--------------------------------------------------------2--------------------------------------------------
-											else assert (porta_aperta = '1') report "SR4 -> S0 ERRATA; Codice errore: " & to_string(StateToState_col) & to_string(StateToState_row) & std_logic'image(controllore_testbench)(2) & to_string(contatore_testbench) & "; Numero di transizioni verificate: " & integer'image(number_trans) severity error;
-											end if;
-										end if;
-		when others => 			if(1=0) then report "others"; end if;
-		end case;
-	end process chekoutput;
-
+		if(falling_edge(clk)) then
+			stato_precedente_testbench <= stato_testbench;
+			if porta_aperta='1' then
+					if (stato_precedente_testbench = "1000" and stato_testbench = "1001") then
+						report "Transizione SR4 -> SPA, porta aperta correttamente" severity note;
+					elsif (stato_precedente_testbench = "1001" and stato_testbench = "1001") then
+						report "Permanenza SPA -> SPA, porta aperta correttamente" severity note;
+					else
+						report "La porta si è aperta in seguito ad una transizione che non lo consentiva" severity error;
+					end if;
+			else
+					if (stato_precedente_testbench = "1000" and stato_testbench = "1001") then
+						report "Transizione SR4 -> SPA, la porta non si è aperta" severity error;
+					elsif (stato_precedente_testbench = "1001" and stato_testbench = "1001") then
+						report "Permanenza SPA -> SPA, la porta non è aperta" severity error;
+					elsif (stato_precedente_testbench = "1001" and stato_testbench = "0000") then
+						report "Transizione SPA -> S0, porta chiusa correttamente" severity note;
+					end if;
+			end if;
+		end if;
+		
+	end process CHEKOUTPUT;
 END;

@@ -11,5 +11,3 @@ Time resolution is 1 ps
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-at 635 ns(2): Note: SR4 -> S0 corretta; tentativo: 10; Numero di transizioni verificate: 55 (/global_simple_tb/).
-at 945 ns(2): Note: SR4 -> S0 corretta; tentativo: 10; Numero di transizioni verificate: 80 (/global_simple_tb/).

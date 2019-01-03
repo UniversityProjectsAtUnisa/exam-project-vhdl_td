@@ -156,13 +156,9 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1546455285" xil_pn:in_ck="-7417298722765165328" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1546455285">
+    <transform xil_pn:end_ts="1546534075" xil_pn:in_ck="1647030434156606820" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1546534075">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="accumulatore_mod3.vhd"/>
       <outfile xil_pn:name="contatore_mod4.vhd"/>
       <outfile xil_pn:name="contatore_mod4_tb.vhd"/>
@@ -170,14 +166,15 @@
       <outfile xil_pn:name="controllore_tb.vhd"/>
       <outfile xil_pn:name="counter2_VHDL.vhd"/>
       <outfile xil_pn:name="counter2_VHDL_tb.vhd"/>
+      <outfile xil_pn:name="global_hard_tb.vhd"/>
       <outfile xil_pn:name="global_simple_tb.vhd"/>
       <outfile xil_pn:name="password.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1546452202" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-693198925602948017" xil_pn:start_ts="1546452202">
+    <transform xil_pn:end_ts="1546533211" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-693198925602948017" xil_pn:start_ts="1546533211">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1546452202" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-1950502569571790323" xil_pn:start_ts="1546452202">
+    <transform xil_pn:end_ts="1546533211" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-1950502569571790323" xil_pn:start_ts="1546533211">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
@@ -185,14 +182,9 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1546455288" xil_pn:in_ck="-7417298722765165328" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1546455288">
+    <transform xil_pn:end_ts="1546534075" xil_pn:in_ck="1647030434156606820" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1546534075">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="accumulatore_mod3.vhd"/>
       <outfile xil_pn:name="contatore_mod4.vhd"/>
       <outfile xil_pn:name="contatore_mod4_tb.vhd"/>
@@ -200,17 +192,13 @@
       <outfile xil_pn:name="controllore_tb.vhd"/>
       <outfile xil_pn:name="counter2_VHDL.vhd"/>
       <outfile xil_pn:name="counter2_VHDL_tb.vhd"/>
+      <outfile xil_pn:name="global_hard_tb.vhd"/>
       <outfile xil_pn:name="global_simple_tb.vhd"/>
       <outfile xil_pn:name="password.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1546455292" xil_pn:in_ck="-7417298722765165328" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-4422360188051977228" xil_pn:start_ts="1546455288">
+    <transform xil_pn:end_ts="1546534078" xil_pn:in_ck="1647030434156606820" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-4422360188051977228" xil_pn:start_ts="1546534075">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="fuse.log"/>
       <outfile xil_pn:name="global_simple_tb_beh.prj"/>
       <outfile xil_pn:name="global_simple_tb_isim_beh.exe"/>
@@ -218,12 +206,9 @@
       <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1546455292" xil_pn:in_ck="-6465775552280960001" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="372987572906707543" xil_pn:start_ts="1546455292">
+    <transform xil_pn:end_ts="1546534078" xil_pn:in_ck="-6465775552280960001" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="372987572906707543" xil_pn:start_ts="1546534078">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="global_simple_tb_isim_beh.wdb"/>
       <outfile xil_pn:name="isim.cmd"/>
       <outfile xil_pn:name="isim.log"/>

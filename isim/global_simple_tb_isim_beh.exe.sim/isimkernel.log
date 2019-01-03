@@ -2,28 +2,28 @@ Command line:
    global_simple_tb_isim_beh.exe
      -simmode  gui
      -simrunnum  0
-     -socket  50253
+     -socket  49748
 
-Wed Jan 02 19:54:53 2019
+Thu Jan 03 17:47:59 2019
 
 
  Elaboration Time: 0.03125 sec
 
- Current Memory Usage: 5177.01 Meg
+ Current Memory Usage: 5176.97 Meg
 
- Total Signals          : 39
- Total Nets             : 34
- Total Signal Drivers   : 22
+ Total Signals          : 40
+ Total Nets             : 38
+ Total Signal Drivers   : 23
  Total Blocks           : 7
  Total Primitive Blocks : 5
- Total Processes        : 13
- Total Traceable Variables  : 21
- Total Scalar Nets and Variables : 446
-Total Line Count : 427
+ Total Processes        : 12
+ Total Traceable Variables  : 19
+ Total Scalar Nets and Variables : 445
+Total Line Count : 457
 
- Total Simulation Time: 0.3125 sec
+ Total Simulation Time: 0.078125 sec
 
- Current Memory Usage: 5177.01 Meg
+ Current Memory Usage: 5491.54 Meg
 
-Wed Jan 02 19:55:16 2019
+Thu Jan 03 17:48:41 2019
 
