@@ -20,5 +20,5 @@ Compiling architecture behavior of entity global_hard_tb
 Time Resolution for simulation is 1ps.
 Compiled 11 VHDL Units
 Built simulation executable C:/Users/marco/Documents/XilinxProjects/porta/global_hard_tb_isim_beh.exe
-Fuse Memory Usage: 34672 KB
-Fuse CPU Usage: 405 ms
+Fuse Memory Usage: 33972 KB
+Fuse CPU Usage: 421 ms

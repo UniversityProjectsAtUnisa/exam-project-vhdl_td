@@ -1,38 +1,12 @@
 --------------------------------------------------------------------------------
--- Company: 
--- Engineer:
---
 -- Create Date:   17:29:56 01/03/2019
--- Design Name:   
--- Module Name:   C:/Users/marco/Documents/XilinxProjects/porta/global_hard_tb.vhd
--- Project Name:  porta
--- Target Device:  
--- Tool versions:  
--- Description:   
--- 
--- VHDL Test Bench Created by ISE for module: password
--- 
--- Dependencies:
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
---
--- Notes: 
--- This testbench has been automatically generated using types std_logic and
--- std_logic_vector for the ports of the unit under test.  Xilinx recommends
--- that these types always be used for the top-level I/O of a design in order
--- to guarantee that the testbench will bind correctly to the post-implementation 
--- simulation model.
+-- Module Name:   global_hard_tb.vhd
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 use ieee.std_logic_arith.all;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
+--------------------------------------------------------------------------------
+
 ENTITY global_hard_tb IS
 END global_hard_tb;
  
@@ -109,346 +83,349 @@ BEGIN
  
 
 --Provo almeno una volta tutte le singole possibili transizioni tra stati dell'automa
-   -- Stimulus process
    stim_proc: process
    begin		
-      -- hold reset state for 100 ns.
-		
+	
 		rst<='1';
-      wait for 10 ns;	
+      wait for 10 ns;	--Reset
 		rst<='0';
 		
-		badge <= "00";
+		badge <= "00";		--Permanenza stato iniziale
 		row <= "0000";
 		col <= "000";
 		wait for 10 ns;
 		
-		badge <= "01";
+		badge <= "01";		--Passaggio Badge
 		row <= "0000";
 		col <= "000";
 		wait for 10 ns;
 		
-		badge <= "00";
+		badge <= "00";		--Attesa prima lettura
 		row <= "0000";
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "0100";
+		row <= "0100";		--Inserimento cifra errata
 		col <= "010";
 		wait for 10 ns;
 -------------------------------------------------		
 		rst<='1';
-      wait for 10 ns;	
+      wait for 10 ns;	--Reset
 		rst<='0';
 		
-		badge <= "01";
+		badge <= "01";		--Passaggio Badge
 		row <= "0000";
 		col <= "000";
 		wait for 10 ns;
 		
-		badge <= "00";
+		badge <= "00";		--Inserimento prima cifra
 		row <= "1000";
 		col <= "001";
 		wait for 10 ns;
 		
-		row <= "1000";
+		row <= "1000";		--Attesa rilascio prima cifra
 		col <= "001";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio prima cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "0100";
+		row <= "0100";		--Attesa seconda lettura
 		col <= "010";
 		wait for 10 ns;
 
-----
+-------------------------------------------------	
 
 		rst<='1';
-      wait for 10 ns;	
+      wait for 10 ns;	--Reset
 		rst<='0';
 		
-		badge <= "01";
+		badge <= "01";		--Passaggio Badge
 		row <= "0000";
 		col <= "000";
 		wait for 10 ns;
 		
-		badge <= "00";
+		badge <= "00";		--Inserimento prima cifra
 		row <= "1000";
 		col <= "001";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio prima cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "1000";
+		row <= "1000";		--Inserimento seconda cifra
 		col <= "001";
 		wait for 10 ns;
 		
-		row <= "1000";
+		row <= "1000";		--Attesa rilascio seconda cifra
 		col <= "001";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio seconda cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Attesa inserimento terza cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "0100";
+		row <= "0100";		--Inserimento cifra errata
 		col <= "010";
 		wait for 10 ns;
 		
---
+-------------------------------------------------	
 		
 		rst<='1';
-      wait for 10 ns;	
+      wait for 10 ns;	--Reset
 		rst<='0';
 		
-		badge <= "01";
+		badge <= "01";		--Passaggio Badge
 		row <= "0000";
 		col <= "000";
 		wait for 10 ns;
 		
-		badge <= "00";
+		badge <= "00";		--Inserimento prima cifra
 		row <= "1000";
 		col <= "001";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio prima cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "1000";
+		row <= "1000";		--Inserimento seconda cifra
 		col <= "001";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio seconda cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "1000";
+		row <= "1000";		--Inserimento terza cifra
 		col <= "001";
 		wait for 10 ns;
 		
-		row <= "1000";
+		row <= "1000";		--Attesa rilascio terza cifra
 		col <= "001";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio terza cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Attesa inserimento quarta cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "0100";
+		row <= "0100";		--Inserimento cifra errata
 		col <= "010";
 		wait for 10 ns;
 		
---
+-------------------------------------------------	
 		
 		rst<='1';
-      wait for 10 ns;	
+      wait for 10 ns;	--Reset
 		rst<='0';
 		
-		badge <= "01";
+		badge <= "01";		--Passaggio Badge
 		row <= "0000";
 		col <= "000";
 		wait for 10 ns;
 		
-		badge <= "00";
+		badge <= "00";		--Inserimento prima cifra
 		row <= "1000";
 		col <= "001";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio prima cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "1000";
+		row <= "1000";		--Inserimento seconda cifra
 		col <= "001";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio seconda cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "1000";
+		row <= "1000";		--Inserimento terza cifra
 		col <= "001";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio terza cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "1000";
+		row <= "1000";		--Inserimento quarta cifra
 		col <= "001";
 		wait for 10 ns;
 		
-		row <= "1000";
+		row <= "1000";		--Attesa rilascio quarta cifra
 		col <= "001";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio quarta cifra e
+		col <= "000";		--Apertura porta
+		wait for 10 ns;
+		
+		row <= "0000";		--Attesa chiusura porta
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "0000";
-		col <= "000";
-		wait for 10 ns;
-		
-		badge <= "10";
-		wait for 10 ns;
-			
---
-		
+		badge <= "10";		
+		wait for 10 ns;	--Chiusura porta
 		badge <="00";
+			
+-------------------------------------------------	
+		
 		rst <= '1';
-		wait for 10 ns;
+		wait for 10 ns;	--Reset
 		rst <= '0';
 		
-		badge <= "01";
+		badge <= "01";		--Passaggio Badge
 		row <= "0000";
 		col <= "000";
 		wait for 10 ns;
 		
-		badge <= "00";
+		badge <= "00";		--Inserimento cifra errata
 		row <= "0100";
 		col <= "010";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio prima cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "0100";
+		row <= "0100";		--Inserimento cifra errata	
 		col <= "010";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio seconda cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "0100";
+		row <= "0100";		--Inserimento cifra errata
 		col <= "010";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio terza cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "0100";
+		row <= "0100";		--Inserimento cifra errata
 		col <= "010";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio quarta cifra
 		col <= "000";
 		wait for 10 ns;
-		
---
-		
-		row <= "0100";
+	---------------- *PASSWORD ERRATA* -------------
+	
+	
+	---------------- SECONDO TENTATIVO -------------
+		row <= "0100";		--Inserimento cifra errata
 		col <= "010";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio prima cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "0100";
+		row <= "0100";		--Inserimento cifra errata
 		col <= "010";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio seconda cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "0100";
+		row <= "0100";		--Inserimento cifra errata
 		col <= "010";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio terza cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "0100";
+		row <= "0100";		--Inserimento cifra errata
 		col <= "010";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio quarta cifra
 		col <= "000";
 		wait for 10 ns;
-		
---
-		
-		row <= "0100";
+	---------------- PASSWORD ERRATA --------------
+	
+	
+	---------------- TERZO TENTATIVO --------------
+		row <= "0100";		--Inserimento cifra errata
 		col <= "010";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio prima cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "0100";
+		row <= "0100";		--Inserimento cifra errata
 		col <= "010";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio seconda cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "0100";
+		row <= "0100";		--Inserimento cifra errata
 		col <= "010";
 		wait for 10 ns;
 		
-		row <= "0000";
+		row <= "0000";		--Rilascio terza cifra
 		col <= "000";
 		wait for 10 ns;
 		
-		row <= "0100";
+		row <= "0100";		--Inserimento cifra errata
 		col <= "010";
 		wait for 10 ns;
 		
-		row <= "0000";
-		col <= "000";
-		wait for 10 ns;
-		
-		
-      wait for clk_period;
-
-      -- insert stimulus here 
-
+		row <= "0000";		--Rilascio quarta cifra e
+		col <= "000";		--Ritorno allo stato iniziale
+	-------------- **PASSWORD ERRATA** -------------
+	
+	
+	-------------- TENTATIVI ESAURITI --------------
       wait;
    end process;
 	
-	CHEKOUTPUT: process (clk) -- controllo che le transizioni e le uscite siano corrette per tutti i casi
+	CHEKOUTPUT: process (clk) 
+	--Lo scopo di questo processo è di verificare che la porta si apra solo nei casi previsti.
+	--Registrando lo stato precedente l'individuazione dell'transizione è univoca.
+	--La difficoltà nasce dal fatto che gli input e lo stato corrente non siano sempre sufficienti ad identificare univocamente lo stato di provenienza.
+	
+	--La valutazione del falling_edge garantisce che vi sia una certa distanza temporale (mezzo ciclo di clock) con la valutazione dello stato corrente successivo
+	--Così che possano esserci momenti in cui lo stato corrente e il precedente non siano uguali.
 		begin 
-		if(falling_edge(clk)) then
-			stato_precedente_testbench <= stato_testbench;
-			if porta_aperta='1' then
-					if (stato_precedente_testbench = "1000" and stato_testbench = "1001") then
-						report "Transizione SR4 -> SPA, porta aperta correttamente" severity note;
-					elsif (stato_precedente_testbench = "1001" and stato_testbench = "1001") then
-						report "Permanenza SPA -> SPA, porta aperta correttamente" severity note;
-					else
-						report "La porta si è aperta in seguito ad una transizione che non lo consentiva" severity error;
-					end if;
-			else
-					if (stato_precedente_testbench = "1000" and stato_testbench = "1001") then
-						report "Transizione SR4 -> SPA, la porta non si è aperta" severity error;
-					elsif (stato_precedente_testbench = "1001" and stato_testbench = "1001") then
-						report "Permanenza SPA -> SPA, la porta non è aperta" severity error;
-					elsif (stato_precedente_testbench = "1001" and stato_testbench = "0000") then
-						report "Transizione SPA -> S0, porta chiusa correttamente" severity note;
-					end if;
-			end if;
+		if falling_edge(clk) then
+				stato_precedente_testbench <= stato_testbench;
+				if porta_aperta='1' then
+						if (stato_precedente_testbench = "1000" and stato_testbench = "1001") then
+							report "Transizione SR4 -> SPA, porta aperta correttamente" severity note;
+						elsif (stato_precedente_testbench = "1001" and stato_testbench = "1001") then
+							report "Permanenza SPA -> SPA, porta aperta correttamente" severity note;
+						else
+								report "La porta si è aperta in seguito ad una transizione che non lo consentiva" severity ERROR;
+						end if;
+				else
+						if (stato_precedente_testbench = "1000" and stato_testbench = "1001") then
+							report "Transizione SR4 -> SPA, la porta non si è aperta" severity ERROR;
+						elsif (stato_precedente_testbench = "1001" and stato_testbench = "1001") then
+							report "Permanenza SPA -> SPA, la porta non è aperta" severity ERROR;
+						elsif (stato_precedente_testbench = "1001" and stato_testbench = "0000") then
+							report "Transizione SPA -> S0, porta chiusa correttamente" severity note;
+						end if;
+				end if;
 		end if;
+		
 	end process CHEKOUTPUT;
-
 END;

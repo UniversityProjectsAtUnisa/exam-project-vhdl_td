@@ -8,8 +8,8 @@ use ieee.std_logic_arith.all;
 ----------------------------------------------------------------------------------
 
 entity password is
--- Generic (  rowN1, rowN2, rowN3, rowN4 : in std_logic_vector (3 downto 0);
---				colN1, colN2, colN3, colN4 : in std_logic_vector (2 downto 0));
+ Generic (  rowN1, rowN2, rowN3, rowN4 : in std_logic_vector (3 downto 0);
+				colN1, colN2, colN3, colN4 : in std_logic_vector (2 downto 0));
     Port ( clk :   in  STD_LOGIC;
            rst :   in  STD_LOGIC;
            row :   in  STD_LOGIC_VECTOR (3 downto 0);
@@ -76,14 +76,14 @@ signal bug : std_logic := '0'; --ALTO QUANDO badge="11" O tentativo_corrente="11
 
 ----------------------*****************-------------------------
 ----------------------Temporary section-------------------------
-constant rowN1:  std_logic_vector (3 downto 0) := "1000";
-constant colN1:  std_logic_vector (2 downto 0) :=  "001";
-constant rowN2:  std_logic_vector (3 downto 0) := "1000";
-constant colN2:  std_logic_vector (2 downto 0) :=  "001";
-constant rowN3:  std_logic_vector (3 downto 0) := "1000";
-constant colN3:  std_logic_vector (2 downto 0) :=  "001";
-constant rowN4:  std_logic_vector (3 downto 0) := "1000";
-constant colN4:  std_logic_vector (2 downto 0) :=  "001";
+--constant rowN1:  std_logic_vector (3 downto 0) := "1000";
+--constant colN1:  std_logic_vector (2 downto 0) :=  "001";
+--constant rowN2:  std_logic_vector (3 downto 0) := "1000";
+--constant colN2:  std_logic_vector (2 downto 0) :=  "001";
+--constant rowN3:  std_logic_vector (3 downto 0) := "1000";
+--constant colN3:  std_logic_vector (2 downto 0) :=  "001";
+--constant rowN4:  std_logic_vector (3 downto 0) := "1000";
+--constant colN4:  std_logic_vector (2 downto 0) :=  "001";
 ----------------------------------------------------------------
 ----------------------*****************-------------------------
 
