@@ -38,6 +38,7 @@ sync_process: process(clk)
 				end if;
 		end if;
 end process sync_process;
+
 O<=temp;
 
 end Behavioral;

@@ -163,17 +163,9 @@
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
       <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="InputRemoved"/>
       <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="accumulatore_mod3.vhd"/>
-      <outfile xil_pn:name="contatore_mod4.vhd"/>
-      <outfile xil_pn:name="contatore_mod4_tb.vhd"/>
-      <outfile xil_pn:name="controllore.vhd"/>
-      <outfile xil_pn:name="controllore_tb.vhd"/>
-      <outfile xil_pn:name="counter2_VHDL.vhd"/>
-      <outfile xil_pn:name="counter2_VHDL_tb.vhd"/>
-      <outfile xil_pn:name="global_hard_tb.vhd"/>
-      <outfile xil_pn:name="global_simple_tb.vhd"/>
-      <outfile xil_pn:name="password.vhd"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1546534774" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-3285052548703165596" xil_pn:start_ts="1546534774">
       <status xil_pn:value="SuccessfullyRun"/>
@@ -194,44 +186,32 @@
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
       <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="InputRemoved"/>
       <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="accumulatore_mod3.vhd"/>
-      <outfile xil_pn:name="contatore_mod4.vhd"/>
-      <outfile xil_pn:name="contatore_mod4_tb.vhd"/>
-      <outfile xil_pn:name="controllore.vhd"/>
-      <outfile xil_pn:name="controllore_tb.vhd"/>
-      <outfile xil_pn:name="counter2_VHDL.vhd"/>
-      <outfile xil_pn:name="counter2_VHDL_tb.vhd"/>
-      <outfile xil_pn:name="global_hard_tb.vhd"/>
-      <outfile xil_pn:name="global_simple_tb.vhd"/>
-      <outfile xil_pn:name="password.vhd"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1546539214" xil_pn:in_ck="1647030434156606820" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-3123788997773743586" xil_pn:start_ts="1546539211">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputChanged"/>
+      <status xil_pn:value="OutputRemoved"/>
+    </transform>
+    <transform xil_pn:end_ts="1546539214" xil_pn:in_ck="-737046396627619694" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-7783321554727679519" xil_pn:start_ts="1546539214">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForProperties"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="InputRemoved"/>
       <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="fuse.log"/>
-      <outfile xil_pn:name="global_hard_tb_beh.prj"/>
-      <outfile xil_pn:name="global_hard_tb_isim_beh.exe"/>
-      <outfile xil_pn:name="isim"/>
-      <outfile xil_pn:name="isim.log"/>
-      <outfile xil_pn:name="xilinxsim.ini"/>
-    </transform>
-    <transform xil_pn:end_ts="1546539214" xil_pn:in_ck="-737046396627619694" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-7783321554727679519" xil_pn:start_ts="1546539214">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="global_hard_tb_isim_beh.wdb"/>
-      <outfile xil_pn:name="isim.cmd"/>
-      <outfile xil_pn:name="isim.log"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1545406434" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1545406434">
       <status xil_pn:value="SuccessfullyRun"/>
@@ -265,19 +245,11 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
-      <outfile xil_pn:name="controllore.ngr"/>
-      <outfile xil_pn:name="counter2_VHDL.ngr"/>
-      <outfile xil_pn:name="password.lso"/>
-      <outfile xil_pn:name="password.ngc"/>
-      <outfile xil_pn:name="password.ngr"/>
-      <outfile xil_pn:name="password.prj"/>
-      <outfile xil_pn:name="password.stx"/>
-      <outfile xil_pn:name="password.syr"/>
-      <outfile xil_pn:name="password.xst"/>
-      <outfile xil_pn:name="password_xst.xrpt"/>
-      <outfile xil_pn:name="webtalk_pn.xml"/>
-      <outfile xil_pn:name="xst"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1545855745" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="-1690449134374277013" xil_pn:start_ts="1545855745">
       <status xil_pn:value="SuccessfullyRun"/>
