@@ -8,8 +8,8 @@ use ieee.std_logic_arith.all;
 ----------------------------------------------------------------------------------
 
 entity password is
- Generic (  rowN1, rowN2, rowN3, rowN4 : in std_logic_vector (3 downto 0);
-				colN1, colN2, colN3, colN4 : in std_logic_vector (2 downto 0));
+-- Generic (  rowN1, rowN2, rowN3, rowN4 : in std_logic_vector (3 downto 0);
+--				colN1, colN2, colN3, colN4 : in std_logic_vector (2 downto 0));
     Port ( clk :   in  STD_LOGIC;
            rst :   in  STD_LOGIC;
            row :   in  STD_LOGIC_VECTOR (3 downto 0);
@@ -27,7 +27,7 @@ end password;
 architecture Behavioral of password is
 
 --INIZIO DICHIARAZIONE COMPONENTI--
---componente che ricorda 0 se la password inserita è sbagliata, 1 altrimenti.
+--Componente che ricorda 0 se la password inserita è sbagliata, 1 altrimenti.
 component controllore is
     Port ( clk: 	in   STD_LOGIC;
 			  rst :  in   STD_LOGIC;
@@ -35,7 +35,8 @@ component controllore is
            O : 	out  STD_LOGIC);
 end component;
 
---componente che conta i tentativi di inserimento disponibili.
+--Componente che conta istante per istante 
+--quanti tentativi di inserimento della password sono falliti consecutivamente.
 component counter2_VHDL is
     Port ( En :  in   STD_LOGIC;
            clk : in   STD_LOGIC;
@@ -58,7 +59,7 @@ signal rst_tentativi: 			std_logic;
 signal tentativo_corrente: 	std_logic_vector (1 downto 0);
 
 
---dichiarazione 10 stati
+--dichiarazione 10 stati come da diagramma di flusso
 type state is ( stato_iniziale, 
 stato_lettura1, stato_attesa_rilascio1, 
 stato_lettura2, stato_attesa_rilascio2, 
@@ -75,14 +76,14 @@ signal bug : std_logic := '0'; --ALTO QUANDO badge="11" O tentativo_corrente="11
 
 ----------------------*****************-------------------------
 ----------------------Temporary section-------------------------
---constant rowN1:  std_logic_vector (3 downto 0) := "1000";
---constant colN1:  std_logic_vector (2 downto 0) :=  "001";
---constant rowN2:  std_logic_vector (3 downto 0) := "1000";
---constant colN2:  std_logic_vector (2 downto 0) :=  "001";
---constant rowN3:  std_logic_vector (3 downto 0) := "1000";
---constant colN3:  std_logic_vector (2 downto 0) :=  "001";
---constant rowN4:  std_logic_vector (3 downto 0) := "1000";
---constant colN4:  std_logic_vector (2 downto 0) :=  "001";
+constant rowN1:  std_logic_vector (3 downto 0) := "1000";
+constant colN1:  std_logic_vector (2 downto 0) :=  "001";
+constant rowN2:  std_logic_vector (3 downto 0) := "1000";
+constant colN2:  std_logic_vector (2 downto 0) :=  "001";
+constant rowN3:  std_logic_vector (3 downto 0) := "1000";
+constant colN3:  std_logic_vector (2 downto 0) :=  "001";
+constant rowN4:  std_logic_vector (3 downto 0) := "1000";
+constant colN4:  std_logic_vector (2 downto 0) :=  "001";
 ----------------------------------------------------------------
 ----------------------*****************-------------------------
 
@@ -110,18 +111,19 @@ begin
 	end process;
 -----------------**************************-----------------
 	
---Processo sincrono che valuta a tempo di clock il nuovo stato, sulla base del reset e dei processi concorrenti.
---Se il reset è alto o si verifica un caso non accettabile (bug) ritorna allo stato iniziale con uscita 0RR.
+--Processo sincrono che gestisce l'assegnamento temporizzato di ogni stato.
 	Sync_process: process(clk)
 		begin
 			if rising_edge(clk) then	
 							current_state	 <= next_state;
+							--Gestione di uno dei tre segnali di debug utilizzati nel testbench
 							stato_testbench <= conv_std_logic_vector(state'POS(next_state),4);
 			end if;
 		end process;
 ----------------------*****************-------------------------
 
---Processo asincrono che valuta i passaggi di stato e le uscite in una struttura automatica di tipo Mealy
+--Processo asincrono che calcola i passaggi di stato e gestisce le uscite in una struttura automatica di tipo Mealy
+--Se il reset è attivo o si verifica un caso non accettabile (bug) ritorna allo stato iniziale con uscita 0RR.
 	State_Transition_and_output: process (current_state, row, col, badge, bug, rst)
 			begin
 ---------Inizio struttura case-when--------------------------------------------------------------------------------------
@@ -357,10 +359,10 @@ begin
 				end case;
 ---------Fine struttura case-when----------------------------------------------------------------------------------------
 	end process;
-	
---stato_testbench<=conv_std_logic_vector(state'POS(current_state),4); Non funziona fuori dal process, non so ancora perché;
---stato_testbench<=conv_std_logic_vector(state'POS(next_state),4);	Forse cambiare current_state con next_state riduce i ritardi;
+
+--Gestione di due dei tre segnali di debug utilizzati nel testbench
 contatore_testbench	 <= tentativo_corrente;
-controllore_testbench <= password_corretta;		
+controllore_testbench <= password_corretta;
+		
 end Behavioral;
 
