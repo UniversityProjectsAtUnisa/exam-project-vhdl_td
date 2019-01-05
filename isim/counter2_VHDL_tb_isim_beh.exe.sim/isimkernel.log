@@ -1,0 +1,29 @@
+Command line:
+   counter2_VHDL_tb_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  49700
+
+Sat Jan 05 16:39:45 2019
+
+
+ Elaboration Time: 0.03125 sec
+
+ Current Memory Usage: 5176.98 Meg
+
+ Total Signals          : 9
+ Total Nets             : 7
+ Total Signal Drivers   : 5
+ Total Blocks           : 5
+ Total Primitive Blocks : 4
+ Total Processes        : 4
+ Total Traceable Variables  : 11
+ Total Scalar Nets and Variables : 386
+Total Line Count : 31
+
+ Total Simulation Time: 0.125 sec
+
+ Current Memory Usage: 5019.7 Meg
+
+Sat Jan 05 16:43:11 2019
+

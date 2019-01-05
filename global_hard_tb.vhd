@@ -16,16 +16,16 @@ ARCHITECTURE behavior OF global_hard_tb IS
  
     COMPONENT password
 	 Generic (rowN1, rowN2, rowN3, rowN4 : in std_logic_vector (3 downto 0);
-				colN1, colN2, colN3, colN4 : in std_logic_vector (2 downto 0));
+			  colN1, colN2, colN3, colN4 : in std_logic_vector (2 downto 0));
     PORT(
-         clk : IN  std_logic;
-         rst : IN  std_logic;
-         row : IN  std_logic_vector(3 downto 0);
-         col : IN  std_logic_vector(2 downto 0);
-         badge : IN  std_logic_vector(1 downto 0);
-         stato_testbench : OUT  std_logic_vector(3 downto 0);
-         contatore_testbench : OUT  std_logic_vector(1 downto 0);
-         controllore_testbench : OUT  std_logic;
+         clk 	: IN  std_logic;
+         rst 	: IN  std_logic;
+         row 	: IN  std_logic_vector(3 downto 0);
+         col 	: IN  std_logic_vector(2 downto 0);
+         badge  : IN  std_logic_vector(1 downto 0);
+		 stato_testbench : 			OUT  std_logic_vector(3 downto 0);
+         contatore_testbench : 		OUT  std_logic_vector(1 downto 0);
+         controllore_testbench : 	OUT  std_logic;
          porta_aperta : OUT  std_logic
         );
     END COMPONENT;
@@ -87,7 +87,7 @@ BEGIN
    begin		
 	
 		rst<='1';
-      wait for 10 ns;	--Reset
+		wait for 10 ns;	--Reset
 		rst<='0';
 		
 		badge <= "00";		--Permanenza stato iniziale
@@ -110,7 +110,7 @@ BEGIN
 		wait for 10 ns;
 -------------------------------------------------		
 		rst<='1';
-      wait for 10 ns;	--Reset
+		wait for 10 ns;	--Reset
 		rst<='0';
 		
 		badge <= "01";		--Passaggio Badge
@@ -138,7 +138,7 @@ BEGIN
 -------------------------------------------------	
 
 		rst<='1';
-      wait for 10 ns;	--Reset
+		wait for 10 ns;	--Reset
 		rst<='0';
 		
 		badge <= "01";		--Passaggio Badge
@@ -178,7 +178,7 @@ BEGIN
 -------------------------------------------------	
 		
 		rst<='1';
-      wait for 10 ns;	--Reset
+		wait for 10 ns;	--Reset
 		rst<='0';
 		
 		badge <= "01";		--Passaggio Badge
@@ -226,7 +226,7 @@ BEGIN
 -------------------------------------------------	
 		
 		rst<='1';
-      wait for 10 ns;	--Reset
+		wait for 10 ns;	--Reset
 		rst<='0';
 		
 		badge <= "01";		--Passaggio Badge

@@ -11,21 +11,21 @@ Time resolution is 1 ps
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-at 140 ns(1): Note: Transizione SR4 -> SPA, porta aperta correttamente (/global_simple_tb/).
-at 150 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
-at 160 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
-at 170 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
-at 180 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
-at 190 ns(1): Note: Transizione SPA -> S0, porta chiusa correttamente (/global_simple_tb/).
-at 370 ns(1): Note: Transizione SR4 -> SPA, porta aperta correttamente (/global_simple_tb/).
-at 380 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
-at 390 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
-at 400 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
-at 410 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
-at 420 ns(1): Note: Transizione SPA -> S0, porta chiusa correttamente (/global_simple_tb/).
-at 680 ns(1): Note: Transizione SR4 -> SPA, porta aperta correttamente (/global_simple_tb/).
-at 690 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
-at 700 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
-at 710 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
-at 720 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
-at 730 ns(1): Note: Transizione SPA -> S0, porta chiusa correttamente (/global_simple_tb/).
+at 100 ns(1): Note: Transizione SR4 -> SPA, porta aperta correttamente (/global_simple_tb/).
+at 110 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
+at 120 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
+at 130 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
+at 140 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
+at 150 ns(1): Note: Transizione SPA -> S0, porta chiusa correttamente (/global_simple_tb/).
+at 330 ns(1): Note: Transizione SR4 -> SPA, porta aperta correttamente (/global_simple_tb/).
+at 340 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
+at 350 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
+at 360 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
+at 370 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
+at 380 ns(1): Note: Transizione SPA -> S0, porta chiusa correttamente (/global_simple_tb/).
+at 640 ns(1): Note: Transizione SR4 -> SPA, porta aperta correttamente (/global_simple_tb/).
+at 650 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
+at 660 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
+at 670 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
+at 680 ns(1): Note: Permanenza SPA -> SPA, porta aperta correttamente (/global_simple_tb/).
+at 690 ns(1): Note: Transizione SPA -> S0, porta chiusa correttamente (/global_simple_tb/).

@@ -2,14 +2,14 @@ Command line:
    global_hard_tb_isim_beh.exe
      -simmode  gui
      -simrunnum  0
-     -socket  50875
+     -socket  49709
 
-Fri Jan 04 18:47:13 2019
+Sat Jan 05 17:07:30 2019
 
 
- Elaboration Time: 0.015625 sec
+ Elaboration Time: 0.03125 sec
 
- Current Memory Usage: 5176.98 Meg
+ Current Memory Usage: 5177.01 Meg
 
  Total Signals          : 38
  Total Nets             : 36
@@ -21,9 +21,9 @@ Fri Jan 04 18:47:13 2019
  Total Scalar Nets and Variables : 443
 Total Line Count : 436
 
- Total Simulation Time: 0.125 sec
+ Total Simulation Time: 0.171875 sec
 
- Current Memory Usage: 5491.55 Meg
+ Current Memory Usage: 4705.15 Meg
 
-Fri Jan 04 18:47:44 2019
+Sat Jan 05 18:36:26 2019
 

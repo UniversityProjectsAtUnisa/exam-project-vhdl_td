@@ -1,37 +1,10 @@
 --------------------------------------------------------------------------------
--- Company: 
--- Engineer:
---
 -- Create Date:   17:29:17 12/27/2018
--- Design Name:   
 -- Module Name:   C:/Users/marco/Documents/XilinxProjects/porta/counter2_VHDL_tb.vhd
--- Project Name:  porta
--- Target Device:  
--- Tool versions:  
--- Description:   
--- 
--- VHDL Test Bench Created by ISE for module: counter2_VHDL
--- 
--- Dependencies:
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
---
--- Notes: 
--- This testbench has been automatically generated using types std_logic and
--- std_logic_vector for the ports of the unit under test.  Xilinx recommends
--- that these types always be used for the top-level I/O of a design in order
--- to guarantee that the testbench will bind correctly to the post-implementation 
--- simulation model.
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
+
 ENTITY counter2_VHDL_tb IS
 END counter2_VHDL_tb;
  
@@ -83,28 +56,34 @@ BEGIN
    -- Stimulus process
    stim_proc: process
    begin		
-      -- hold reset state for 100 ns.
+	
 		rst <= '1';
-      wait for 10 ns;	
+      wait for 10 ns;	--00
+		
 		rst <= '0';
 		En<='1';
-		wait for 10 ns;
+		wait for 10 ns;	--01
+		
 		En<='1';
-		wait for 10 ns;
+		wait for 10 ns;	--10	
+		
 		En<='1';
-		wait for 10 ns;
+		wait for 10 ns;	--00
+		
 		En<='1';
-		wait for 10 ns;
+		wait for 10 ns;	--01
+		
 		En<='1';
-		wait for 10 ns;
+		wait for 10 ns;	--10
+		
 		En<='0';
-		wait for 10 ns;
+		wait for 10 ns;	--10
+		
 		En<='0';
-		wait for 10 ns;
+		wait for 10 ns;	--10
+		
 		En<='1';
-		wait for 10 ns;
-
-      -- insert stimulus here 
+		wait for 10 ns;	--00
 
       wait;
    end process;

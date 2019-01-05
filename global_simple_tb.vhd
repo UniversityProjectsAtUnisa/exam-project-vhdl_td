@@ -14,15 +14,15 @@ ARCHITECTURE behavior OF global_simple_tb IS
     -- Component Declaration for the Unit Under Test (UUT)
  
     COMPONENT password
-	 Generic (rowN1, rowN2, rowN3, rowN4 : in std_logic_vector (3 downto 0);
+	 Generic (	rowN1, rowN2, rowN3, rowN4 : in std_logic_vector (3 downto 0);
 				colN1, colN2, colN3, colN4 : in std_logic_vector (2 downto 0));
     PORT(clk : IN  std_logic;
          rst : IN  std_logic;
          row : IN  std_logic_vector(3 downto 0);
          col : IN  std_logic_vector(2 downto 0);
          badge : IN  std_logic_vector(1 downto 0);
-					stato_testbench : out std_logic_vector(3 downto 0); --Vale il numero relativo allo stato
-					contatore_testbench : out std_logic_vector(1 downto 0); --Vale quanto tentativo_corrente 
+					stato_testbench : 		out std_logic_vector(3 downto 0); --Vale il numero relativo allo stato
+					contatore_testbench : 	out std_logic_vector(1 downto 0); --Vale quanto tentativo_corrente 
 					controllore_testbench : out std_logic;
          porta_aperta : OUT  std_logic
         );
@@ -85,10 +85,9 @@ BEGIN
 	
    begin		
 	
-	
---------------------------------------------- Apertura in un tentativo --------------------------------------------
+--------------------------- Apertura in un tentativo --------------------------------
 		rst<='1';
-      wait for 10 ns;	--Reset
+		wait for 10 ns;	--Reset
 		rst<='0';
 		
 		badge<="01";
@@ -126,12 +125,13 @@ BEGIN
 		badge<="10";		
 		wait for 10 ns;	--Chiusura porta
 		badge<="00";
-----------------------------------------------*************************--------------------------------------------
+
+--------------------------- ************************* -------------------------------
 		
-		
---------------------------------------------- Apertura in due tentativi -------------------------------------------
+
+--------------------------- Apertura in due tentativi -------------------------------
 		rst<='1';
-      wait for 10 ns;	--Reset
+		wait for 10 ns;	--Reset
 		rst<='0';
 		
 		badge<="01";
@@ -169,7 +169,7 @@ BEGIN
 	
 	
 	---------------- SECONDO TENTATIVO -------------
-      row<="1000"; 
+		row<="1000"; 
 		col<="001";
 		wait for 10 ns;	--Prima cifra corretta
 		row<="0000";
@@ -200,12 +200,12 @@ BEGIN
 		badge<="10";
 		wait for 10 ns;	--Chiusura porta	
 		badge<="00";
-----------------------------------------------*************************--------------------------------------------
+--------------------------- ************************* -------------------------------
 		
 		
---------------------------------------------- Apertura in tre tentativi -------------------------------------------
+--------------------------- Apertura in tre tentativi -------------------------------
 		rst<='1';
-      wait for 10 ns;	--Reset
+		wait for 10 ns;	--Reset
 		rst<='0';
 		
 		badge<="01";
@@ -274,7 +274,7 @@ BEGIN
 	
 	
 	---------------- TERZO TENTATIVO --------------
-      row<="1000"; 
+		row<="1000"; 
 		col<="001";
 		wait for 10 ns;	--Prima cifra corretta
 		row<="0000";
@@ -305,12 +305,12 @@ BEGIN
 		badge<="10";
 		wait for 10 ns;	--Chiusura porta
 		badge<="00";
------------------------------------------------- ********************* --------------------------------------------
+--------------------------- ************************* -------------------------------
 		
 		
------------------------------------------------- Tre tentativi Falliti --------------------------------------------
+------------------------------ Tre tentativi falliti --------------------------------
 		rst<='1';
-      wait for 10 ns;	--Reset
+		wait for 10 ns;	--Reset
 		rst<='0';
 		
 		badge<="01";

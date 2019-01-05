@@ -1,10 +1,9 @@
 --------------------------------------------------------------------------------
--- Create Date:   19:20:30 12/23/2018
--- Module Name:   C:/Users/marco/Documents/XilinxProjects/porta/controllore_tb.vhd
+-- Create Date:   16:32:00 01/05/2019
+-- Module Name:   controllore_tb.vhd
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
---------------------------------------------------------------------------------
  
 ENTITY controllore_tb IS
 END controllore_tb;
@@ -15,6 +14,7 @@ ARCHITECTURE behavior OF controllore_tb IS
  
     COMPONENT controllore
     PORT(
+         clk : IN  std_logic;
          rst : IN  std_logic;
          I : IN  std_logic;
          O : OUT  std_logic
@@ -23,71 +23,79 @@ ARCHITECTURE behavior OF controllore_tb IS
     
 
    --Inputs
+   signal clk : std_logic := '0';
    signal rst : std_logic := '0';
    signal I : std_logic := '0';
 
  	--Outputs
    signal O : std_logic;
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
- 
---   constant <clock>_period : time := 10 ns;
+
+   -- Clock period definitions
+   constant clk_period : time := 10 ns;
  
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
    uut: controllore PORT MAP (
+          clk => clk,
           rst => rst,
           I => I,
           O => O
         );
 
    -- Clock process definitions
---   <clock>_process :process
---   begin
---		<clock> <= '0';
---		wait for <clock>_period/2;
---		<clock> <= '1';
---		wait for <clock>_period/2;
---   end process;
--- 
+   clk_process :process
+   begin
+		clk <= '0';
+		wait for clk_period/2;
+		clk <= '1';
+		wait for clk_period/2;
+   end process;
+ 
 
    -- Stimulus process
    stim_proc: process
    begin		
-      -- hold reset state for 100 ns.
+	
 	rst<='1';
-	wait for 10 ns;
+	wait for 10 ns;	--alto
+	
 	I<='0';
 	rst<='1';
-	wait for 10 ns;
+	wait for 10 ns;	--alto
+	
 	I<='1';
 	rst<='1';
-	wait for 10 ns;
+	wait for 10 ns;	--alto
+	
 	I<='1';
 	rst<='0';
-	wait for 10 ns;
+	wait for 10 ns;	--alto
+	
 	I<='0';
 	rst<='0';
-	wait for 10 ns;
+	wait for 10 ns;	--basso
+	
 	I<='0';
 	rst<='0';
-	wait for 10 ns;
+	wait for 10 ns;	--basso
+	
 	I<='1';
 	rst<='0';
-	wait for 10 ns;
+	wait for 10 ns;	--basso
+	
 	I<='0';
 	rst<='1';
-	wait for 10 ns;
+	wait for 10 ns;	--alto
+	
 	I<='0';
 	rst<='0';
-	wait for 10 ns;
+	wait for 10 ns;	--basso
+	
 	I<='1';
-	rst<='1';
-
-      -- insert stimulus here 
-
-      wait;
+	rst<='1';				
+   wait;					--alto
+	
    end process;
 
 END;

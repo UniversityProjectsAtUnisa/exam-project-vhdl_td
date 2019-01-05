@@ -91,9 +91,7 @@
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="controllore_par.xrpt"/>
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="controllore_summary.html"/>
     <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="controllore_summary.xml"/>
-    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="controllore_tb_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="controllore_tb_isim_beh.exe"/>
-    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="controllore_tb_isim_beh.wdb"/>
     <file xil_pn:fileType="FILE_WEBTALK" xil_pn:name="controllore_usage.xml"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="controllore_xst.xrpt"/>
     <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="counter2_VHDL.cmd_log"/>
@@ -163,7 +161,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1546650586" xil_pn:in_ck="2625286454484493856" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1546650586">
+    <transform xil_pn:end_ts="1546710415" xil_pn:in_ck="2625286454484493856" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1546710415">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
@@ -181,11 +179,11 @@
       <outfile xil_pn:name="global_simple_tb.vhd"/>
       <outfile xil_pn:name="password.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1546650312" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-693198925602948017" xil_pn:start_ts="1546650312">
+    <transform xil_pn:end_ts="1546710249" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-693198925602948017" xil_pn:start_ts="1546710249">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1546650312" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-1950502569571790323" xil_pn:start_ts="1546650312">
+    <transform xil_pn:end_ts="1546710249" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-1950502569571790323" xil_pn:start_ts="1546710249">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
@@ -193,7 +191,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1546650586" xil_pn:in_ck="2625286454484493856" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1546650586">
+    <transform xil_pn:end_ts="1546710415" xil_pn:in_ck="2625286454484493856" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1546710415">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
@@ -212,7 +210,7 @@
       <outfile xil_pn:name="global_simple_tb.vhd"/>
       <outfile xil_pn:name="password.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1546650589" xil_pn:in_ck="2625286454484493856" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-4422360188051977228" xil_pn:start_ts="1546650586">
+    <transform xil_pn:end_ts="1546710418" xil_pn:in_ck="2625286454484493856" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-4422360188051977228" xil_pn:start_ts="1546710415">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
@@ -227,7 +225,7 @@
       <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1546650589" xil_pn:in_ck="-737046396627619694" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="372987572906707543" xil_pn:start_ts="1546650589">
+    <transform xil_pn:end_ts="1546710418" xil_pn:in_ck="-737046396627619694" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="372987572906707543" xil_pn:start_ts="1546710418">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
@@ -245,7 +243,6 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForProperties"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
     </transform>
   </transforms>
 
