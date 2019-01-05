@@ -1,1 +1,2 @@
 vhdl work "controllore.vhd"
+vhdl work "controllore_alt.vhd"

@@ -122,7 +122,7 @@ Elaborating entity <contatore_mod4> (architecture <Behavioral>) from library <wo
 Synthesizing Unit <contatore_mod4>.
     Related source file is "C:\Users\marco\Documents\XilinxProjects\porta\contatore_mod4.vhd".
     Found 2-bit register for signal <count>.
-    Found 2-bit adder for signal <counter_up[1]_GND_5_o_add_0_OUT> created at line 48.
+    Found 2-bit adder for signal <counter_up[1]_GND_5_o_add_0_OUT> created at line 28.
     Summary:
 	inferred   1 Adder/Subtractor(s).
 	inferred   2 D-type flip-flop(s).
@@ -351,7 +351,7 @@ clk            |    1.984|         |         |         |
 
 
 Total REAL time to Xst completion: 4.00 secs
-Total CPU time to Xst completion: 4.24 secs
+Total CPU time to Xst completion: 4.10 secs
  
 --> 
 

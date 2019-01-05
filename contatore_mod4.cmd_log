@@ -2,3 +2,4 @@ xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/contatore_
 xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/contatore_mod4.xst" -ofn "C:/Users/marco/Documents/XilinxProjects/porta/contatore_mod4.syr" 
 xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/contatore_mod4.xst" -ofn "C:/Users/marco/Documents/XilinxProjects/porta/contatore_mod4.syr" 
 xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/contatore_mod4.xst" -ofn "C:/Users/marco/Documents/XilinxProjects/porta/contatore_mod4.syr" 
+xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/contatore_mod4.xst" -ofn "C:/Users/marco/Documents/XilinxProjects/porta/contatore_mod4.syr" 

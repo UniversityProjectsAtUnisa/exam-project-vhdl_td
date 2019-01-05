@@ -74,8 +74,8 @@ signal current_state, next_state : state;
 signal bug : std_logic := '0'; --ALTO QUANDO badge="11" O tentativo_corrente="11" O non vi sono intersezioni tra righe e colonne
 
 
-----------------------*****************-------------------------
-----------------------Temporary section-------------------------
+--------------------*****************-------------------------
+--------------------Temporary section-------------------------
 --constant rowN1:  std_logic_vector (3 downto 0) := "1000";
 --constant colN1:  std_logic_vector (2 downto 0) :=  "001";
 --constant rowN2:  std_logic_vector (3 downto 0) := "1000";
@@ -84,8 +84,8 @@ signal bug : std_logic := '0'; --ALTO QUANDO badge="11" O tentativo_corrente="11
 --constant colN3:  std_logic_vector (2 downto 0) :=  "001";
 --constant rowN4:  std_logic_vector (3 downto 0) := "1000";
 --constant colN4:  std_logic_vector (2 downto 0) :=  "001";
-----------------------------------------------------------------
-----------------------*****************-------------------------
+--------------------------------------------------------------
+--------------------*****************-------------------------
 
 begin
 --PORT MAPPING
@@ -108,7 +108,7 @@ begin
 				bug<='1';
 		else 	bug<='0';
 		end if;
-	end process;
+	end process bug_process;
 -----------------**************************-----------------
 	
 --Processo sincrono che gestisce l'assegnamento temporizzato di ogni stato.
@@ -119,7 +119,7 @@ begin
 							--Gestione di uno dei tre segnali di debug utilizzati nel testbench
 							stato_testbench <= conv_std_logic_vector(state'POS(next_state),4);
 			end if;
-		end process;
+		end process Sync_process;
 ----------------------*****************-------------------------
 
 --Processo asincrono che calcola i passaggi di stato e gestisce le uscite in una struttura automatica di tipo Mealy
@@ -358,7 +358,7 @@ begin
 -------------------------------------------------------------------------------------------------------------------------
 				end case;
 ---------Fine struttura case-when----------------------------------------------------------------------------------------
-	end process;
+	end process State_Transition_and_output;
 
 --Gestione di due dei tre segnali di debug utilizzati nel testbench
 contatore_testbench	 <= tentativo_corrente;

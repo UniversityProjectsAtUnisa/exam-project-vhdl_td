@@ -122,12 +122,10 @@ Elaborating entity <counter2_VHDL> (architecture <Behavioral>) from library <wor
 Synthesizing Unit <counter2_VHDL>.
     Related source file is "C:\Users\marco\Documents\XilinxProjects\porta\counter2_VHDL.vhd".
     Found 2-bit register for signal <O>.
-    Found 2-bit register for signal <temp>.
-    Found 2-bit adder for signal <temp[0]_GND_5_o_add_2_OUT> created at line 56.
+    Found 2-bit adder for signal <temp[0]_GND_5_o_add_1_OUT> created at line 36.
     Summary:
 	inferred   1 Adder/Subtractor(s).
-	inferred   4 D-type flip-flop(s).
-	inferred   1 Multiplexer(s).
+	inferred   2 D-type flip-flop(s).
 Unit <counter2_VHDL> synthesized.
 
 =========================================================================
@@ -136,10 +134,8 @@ HDL Synthesis Report
 Macro Statistics
 # Adders/Subtractors                                   : 1
  2-bit adder                                           : 1
-# Registers                                            : 2
- 2-bit register                                        : 2
-# Multiplexers                                         : 1
- 2-bit 2-to-1 multiplexer                              : 1
+# Registers                                            : 1
+ 2-bit register                                        : 1
 
 =========================================================================
 
@@ -156,14 +152,8 @@ Unit <counter2_VHDL> synthesized (advanced).
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 1
- 2-bit adder                                           : 1
 # Counters                                             : 1
  2-bit up counter                                      : 1
-# Registers                                            : 2
- Flip-Flops                                            : 2
-# Multiplexers                                         : 1
- 2-bit 2-to-1 multiplexer                              : 1
 
 =========================================================================
 
@@ -172,10 +162,6 @@ Macro Statistics
 =========================================================================
 
 Optimizing unit <counter2_VHDL> ...
-INFO:Xst:2261 - The FF/Latch <O_0> in Unit <counter2_VHDL> is equivalent to the following FF/Latch, which will be removed : <temp_0> 
-INFO:Xst:2261 - The FF/Latch <O_1> in Unit <counter2_VHDL> is equivalent to the following FF/Latch, which will be removed : <temp_1> 
-INFO:Xst:2261 - The FF/Latch <O_1> in Unit <counter2_VHDL> is equivalent to the following FF/Latch, which will be removed : <temp_1> 
-INFO:Xst:2261 - The FF/Latch <O_0> in Unit <counter2_VHDL> is equivalent to the following FF/Latch, which will be removed : <temp_0> 
 
 Mapping all equations...
 Building and optimizing final netlist ...
@@ -212,9 +198,9 @@ Top Level Output File Name         : counter2_VHDL.ngc
 Primitive and Black Box Usage:
 ------------------------------
 # BELS                             : 2
-#      LUT2                        : 2
+#      LUT4                        : 2
 # FlipFlops/Latches                : 2
-#      FDRE                        : 2
+#      FD                          : 2
 # Clock Buffers                    : 1
 #      BUFGP                       : 1
 # IO Buffers                       : 4
@@ -279,7 +265,7 @@ Timing Summary:
 Speed Grade: -3
 
    Minimum period: 1.507ns (Maximum Frequency: 663.460MHz)
-   Minimum input arrival time before clock: 2.268ns
+   Minimum input arrival time before clock: 2.391ns
    Maximum output required time after clock: 3.668ns
    Maximum combinational path delay: No path found
 
@@ -293,55 +279,56 @@ Timing constraint: Default period analysis for Clock 'clk'
   Total number of paths / destination ports: 4 / 2
 -------------------------------------------------------------------------
 Delay:               1.507ns (Levels of Logic = 1)
-  Source:            O_1 (FF)
-  Destination:       O_1 (FF)
+  Source:            temp_0 (FF)
+  Destination:       temp_1 (FF)
   Source Clock:      clk rising
   Destination Clock: clk rising
 
-  Data Path: O_1 to O_1
+  Data Path: temp_0 to temp_1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDRE:C->Q             3   0.447   0.755  O_1 (O_1)
-     LUT2:I0->O            1   0.203   0.000  Mcount_temp1 (Mcount_temp)
-     FDRE:D                    0.102          O_1
+     FD:C->Q               3   0.447   0.755  temp_0 (temp_0)
+     LUT4:I2->O            1   0.203   0.000  temp_0_rstpot (temp_0_rstpot)
+     FD:D                      0.102          temp_0
     ----------------------------------------
     Total                      1.507ns (0.752ns logic, 0.755ns route)
                                        (49.9% logic, 50.1% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
-  Total number of paths / destination ports: 4 / 4
+  Total number of paths / destination ports: 4 / 2
 -------------------------------------------------------------------------
-Offset:              2.268ns (Levels of Logic = 1)
-  Source:            rst (PAD)
-  Destination:       O_1 (FF)
+Offset:              2.391ns (Levels of Logic = 2)
+  Source:            En (PAD)
+  Destination:       temp_1 (FF)
   Destination Clock: clk rising
 
-  Data Path: rst to O_1
+  Data Path: En to temp_1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             2   1.222   0.616  rst_IBUF (rst_IBUF)
-     FDRE:R                    0.430          O_1
+     IBUF:I->O             2   1.222   0.864  En_IBUF (En_IBUF)
+     LUT4:I0->O            1   0.203   0.000  temp_1_rstpot (temp_1_rstpot)
+     FD:D                      0.102          temp_1
     ----------------------------------------
-    Total                      2.268ns (1.652ns logic, 0.616ns route)
-                                       (72.8% logic, 27.2% route)
+    Total                      2.391ns (1.527ns logic, 0.864ns route)
+                                       (63.9% logic, 36.1% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
   Total number of paths / destination ports: 2 / 2
 -------------------------------------------------------------------------
 Offset:              3.668ns (Levels of Logic = 1)
-  Source:            O_0 (FF)
+  Source:            temp_1 (FF)
   Destination:       O<0> (PAD)
   Source Clock:      clk rising
 
-  Data Path: O_0 to O<0>
+  Data Path: temp_1 to O<0>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDRE:C->Q             3   0.447   0.650  O_0 (O_0)
+     FD:C->Q               3   0.447   0.650  temp_1 (temp_1)
      OBUF:I->O                 2.571          O_0_OBUF (O<0>)
     ----------------------------------------
     Total                      3.668ns (3.018ns logic, 0.650ns route)
@@ -363,8 +350,8 @@ clk            |    1.507|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 4.00 secs
-Total CPU time to Xst completion: 4.33 secs
+Total REAL time to Xst completion: 5.00 secs
+Total CPU time to Xst completion: 5.24 secs
  
 --> 
 
@@ -372,5 +359,5 @@ Total memory usage is 4510216 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    0 (   0 filtered)
-Number of infos    :    4 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
 

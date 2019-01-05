@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.09 secs
+Total CPU time to Xst completion: 0.08 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.09 secs
+Total CPU time to Xst completion: 0.08 secs
  
 --> Reading design: controllore.prj
 
@@ -108,6 +108,10 @@ Slice Utilization Ratio Delta      : 5
 Parsing VHDL file "C:\Users\marco\Documents\XilinxProjects\porta\controllore.vhd" into library work
 Parsing entity <controllore>.
 Parsing architecture <Behavioral> of entity <controllore>.
+Parsing VHDL file "C:\Users\marco\Documents\XilinxProjects\porta\controllore_alt.vhd" into library work
+Parsing entity <controllore>.
+Parsing architecture <Behavioral> of entity <controllore>.
+WARNING:HDLCompiler:686 - "C:\Users\marco\Documents\XilinxProjects\porta\controllore_alt.vhd" Line 16: Overwriting existing secondary unit behavioral
 
 =========================================================================
 *                            HDL Elaboration                            *
@@ -121,18 +125,15 @@ Elaborating entity <controllore> (architecture <Behavioral>) from library <work>
 
 Synthesizing Unit <controllore>.
     Related source file is "C:\Users\marco\Documents\XilinxProjects\porta\controllore.vhd".
-    Found 1-bit register for signal <O>.
+WARNING:Xst:647 - Input <clk> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Summary:
-	inferred   1 D-type flip-flop(s).
+	no macro.
 Unit <controllore> synthesized.
 
 =========================================================================
 HDL Synthesis Report
 
-Macro Statistics
-# Registers                                            : 1
- 1-bit register                                        : 1
-
+Found no macro
 =========================================================================
 
 =========================================================================
@@ -143,15 +144,13 @@ Macro Statistics
 =========================================================================
 Advanced HDL Synthesis Report
 
-Macro Statistics
-# Registers                                            : 1
- Flip-Flops                                            : 1
-
+Found no macro
 =========================================================================
 
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
+WARNING:Xst:2170 - Unit controllore : the following signal(s) form a combinatorial loop: O.
 
 Optimizing unit <controllore> ...
 
@@ -164,10 +163,7 @@ Final Macro Processing ...
 =========================================================================
 Final Register Report
 
-Macro Statistics
-# Registers                                            : 1
- Flip-Flops                                            : 1
-
+Found no macro
 =========================================================================
 
 =========================================================================
@@ -190,11 +186,7 @@ Top Level Output File Name         : controllore.ngc
 Primitive and Black Box Usage:
 ------------------------------
 # BELS                             : 1
-#      LUT2                        : 1
-# FlipFlops/Latches                : 1
-#      FDS                         : 1
-# Clock Buffers                    : 1
-#      BUFGP                       : 1
+#      LUT3                        : 1
 # IO Buffers                       : 3
 #      IBUF                        : 2
 #      OBUF                        : 1
@@ -206,23 +198,21 @@ Selected Device : 6slx4tqg144-3
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:               1  out of   4800     0%  
  Number of Slice LUTs:                    1  out of   2400     0%  
     Number used as Logic:                 1  out of   2400     0%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:      2
-   Number with an unused Flip Flop:       1  out of      2    50%  
-   Number with an unused LUT:             1  out of      2    50%  
-   Number of fully used LUT-FF pairs:     0  out of      2     0%  
-   Number of unique control sets:         1
+ Number of LUT Flip Flop pairs used:      1
+   Number with an unused Flip Flop:       1  out of      1   100%  
+   Number with an unused LUT:             0  out of      1     0%  
+   Number of fully used LUT-FF pairs:     0  out of      1     0%  
+   Number of unique control sets:         0
 
 IO Utilization: 
  Number of IOs:                           4
- Number of bonded IOBs:                   4  out of    102     3%  
+ Number of bonded IOBs:                   3  out of    102     2%  
 
 Specific Feature Utilization:
- Number of BUFG/BUFGCTRLs:                1  out of     16     6%  
 
 ---------------------------
 Partition Resource Summary:
@@ -242,11 +232,7 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
------------------------------------+------------------------+-------+
-Clock Signal                       | Clock buffer(FF name)  | Load  |
------------------------------------+------------------------+-------+
-clk                                | BUFGP                  | 1     |
------------------------------------+------------------------+-------+
+No clock signals found in this design
 
 Asynchronous Control Signals Information:
 ----------------------------------------
@@ -256,99 +242,50 @@ Timing Summary:
 ---------------
 Speed Grade: -3
 
-   Minimum period: 1.371ns (Maximum Frequency: 729.262MHz)
-   Minimum input arrival time before clock: 2.231ns
-   Maximum output required time after clock: 3.634ns
-   Maximum combinational path delay: No path found
+   Minimum period: No path found
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: No path found
+   Maximum combinational path delay: 5.422ns
 
 Timing Details:
 ---------------
 All values displayed in nanoseconds (ns)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 1.371ns (frequency: 729.262MHz)
-  Total number of paths / destination ports: 1 / 1
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 2 / 1
 -------------------------------------------------------------------------
-Delay:               1.371ns (Levels of Logic = 1)
-  Source:            q (FF)
-  Destination:       q (FF)
-  Source Clock:      clk rising
-  Destination Clock: clk rising
-
-  Data Path: q to q
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDS:C->Q              2   0.447   0.617  q (q)
-     LUT2:I1->O            1   0.205   0.000  q_I_AND_2_o1 (q_I_AND_2_o)
-     FDS:D                     0.102          q
-    ----------------------------------------
-    Total                      1.371ns (0.754ns logic, 0.617ns route)
-                                       (55.0% logic, 45.0% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
-  Total number of paths / destination ports: 2 / 2
--------------------------------------------------------------------------
-Offset:              2.231ns (Levels of Logic = 1)
+Delay:               5.422ns (Levels of Logic = 3)
   Source:            rst (PAD)
-  Destination:       q (FF)
-  Destination Clock: clk rising
-
-  Data Path: rst to q
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O             1   1.222   0.579  rst_IBUF (rst_IBUF)
-     FDS:S                     0.430          q
-    ----------------------------------------
-    Total                      2.231ns (1.652ns logic, 0.579ns route)
-                                       (74.1% logic, 25.9% route)
-
-=========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              3.634ns (Levels of Logic = 1)
-  Source:            q (FF)
   Destination:       O (PAD)
-  Source Clock:      clk rising
 
-  Data Path: q to O
+  Data Path: rst to O
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDS:C->Q              2   0.447   0.616  q (q)
+     IBUF:I->O             1   1.222   0.808  rst_IBUF (rst_IBUF)
+     LUT3:I0->O            2   0.205   0.616  O1 (O_OBUF)
      OBUF:I->O                 2.571          O_OBUF (O)
     ----------------------------------------
-    Total                      3.634ns (3.018ns logic, 0.616ns route)
-                                       (83.0% logic, 17.0% route)
+    Total                      5.422ns (3.998ns logic, 1.424ns route)
+                                       (73.7% logic, 26.3% route)
 
 =========================================================================
 
 Cross Clock Domains Report:
 --------------------------
 
-Clock to Setup on destination clock clk
----------------+---------+---------+---------+---------+
-               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
-Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
----------------+---------+---------+---------+---------+
-clk            |    1.371|         |         |         |
----------------+---------+---------+---------+---------+
-
 =========================================================================
 
 
 Total REAL time to Xst completion: 4.00 secs
-Total CPU time to Xst completion: 4.35 secs
+Total CPU time to Xst completion: 3.88 secs
  
 --> 
 
 Total memory usage is 4510216 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    0 (   0 filtered)
+Number of warnings :    3 (   0 filtered)
 Number of infos    :    0 (   0 filtered)
 

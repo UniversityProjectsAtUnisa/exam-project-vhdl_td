@@ -1,0 +1,1 @@
+xst -intstyle ise -ifn "C:/Users/marco/Documents/XilinxProjects/porta/controllore_alt.xst" -ofn "C:/Users/marco/Documents/XilinxProjects/porta/controllore_alt.syr" 
